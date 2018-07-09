@@ -1,0 +1,78 @@
+<% include ../../partials/head.ejs %>
+<% include ../../partials/header.ejs %>
+
+
+<div class="container-fluid bg-orange p-5">
+    <div class="container bg-light border-top-red p-5 ">
+ <!--*****************************************-->
+
+            <!-- SECTION EDITION ATELIER -->
+
+            <!--*****************************************-->
+      
+    
+    <form action="/users/admin/update" method="POST" class="needs-validation p-5" novalidate >
+       <div class="form-group mt-2">
+       <h3 for="" class=" pb-2">Editer votre atelier</h3>
+       <div class="form-row">
+         <div class="form-group col-md-6">
+           <label for="email">Nom</label>
+           <input type="text" class="form-control mt-2" name="email" value="" id="email" aria-describedby="" placeholder=""  >
+           <div class="invalid-feedback">
+           entrez votre nouveau prénom
+          </div>
+         </div>
+         <div class="form-group col-md-6">
+           <label for="username">Prénom</label>
+           <input type="text" class="form-control mt-2" name="username" value=""  id="username" aria-describedby="" placeholder=""  >
+           <div class="invalid-feedback">
+            entrez votre nouveau prénom
+          </div>
+         </div>
+       </div>
+       <div class="form-group">
+         <label for="password"> Mot de passe </label>
+         <input type="password" class="form-control mt-2" name="password" value=""  id="password"  min="1" max="15" aria-describedby="" placeholder=""   >
+         <div class="invalid-feedback">
+          entrez votre nouveau mot de passe
+        </div>
+
+        <div class="form-group">
+                <label for="actif" class="mt-3">Actif</label>        
+                <input type="checkbox" name="actif" id="actif" >
+              </div>
+    
+       <input type="hidden" name="droit" id="droit" value=" " required>
+      </div>
+      <button type="submit" class="btn btn-danger"> Editer </button>
+    </form>
+    </div> </div>
+<script>
+  // Validation des champs du formulaire via JavaScript
+  (function() {
+    'use strict';
+    window.addEventListener('load', function() {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('needs-validation');
+      // Loop over them and prevent submission
+      var validation = Array.prototype.filter.call(forms, function(form) {
+        form.addEventListener('submit', function(event) {
+          $('#image').val($('#file-image').prop('files')[0].name);
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          // verification du poids de l'image
+
+          if ($('#image').prop('files')[0].size > 2000000) {
+            event.preventDefault();
+            event.stopPropagation();
+            alert("fichier trop volumineux");
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+  })();
+</script>
+<% include ../../partials/footer.ejs %>
