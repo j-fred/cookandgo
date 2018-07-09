@@ -6,9 +6,13 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 
 
+// Librairie pour gerer les session utilisateurs
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
 var app = express();
 
-const urlDB = process.env.MONGODBFORMATION;//var avec la base mongo
+// var urlDB = process.env.MONGODBFORMATION;//var avec la base mongo
+var    urlDB = process.env.DBCOOK;//var avec la base mongo
 
 var SECRET = process.env.SECRETKEY;//var avec la base mongo 'simplon_reunion_4p_dw-AB_IH_JFG'
     SECRET = 'simplon_reunion_4p_dw-AB_IH_JFG'; // /!\ COMMENTER LORS DE LA MISE EN PROD, UNIQUEMENT POUR LES TESTS'rs
@@ -21,6 +25,17 @@ mongoose.Promise = global.Promise;
 mongoose.connect(urlDB, { useNewUrlParser: true })
       .then(() =>  console.log('connection succesful'))
 
+var db = mongoose.connection;
+
+// utilise des sessions pour le suivi des connexions 
+app.use (session ({ 
+  secret: 'S3CR3t-K3y', 
+  resave: true, 
+  saveUninitialized: false , 
+  store: new MongoStore({
+    mongooseConnection: db
+  })
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

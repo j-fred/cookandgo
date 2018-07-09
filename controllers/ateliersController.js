@@ -9,7 +9,7 @@ var SECRET = process.env.SECRETKEY;//var avec la base mongo 'simplon_reunion_4p_
 module.exports = {
     //Liste les données
     listaccueil : function(req, res) {
-        Atelier.find({}).exec(function(err, datas){
+        Atelier.find({actif:{ $ne:"on" }}).exec(function(err, datas){
             if(err){
                 console.log('Error : ', err);
             }else{
@@ -20,14 +20,14 @@ module.exports = {
 
     //Liste les données
     list : function(req, res) {
-        var objID = new ObjectID(req.params.id);
-        Atelier.find({_cuisinier: objID}).exec(function(err, datas){
-            console.log("--------",req.params.id);
-            console.log("========",datas);
+        // var objID = new ObjectID(req.params.id);
+        Atelier.find({_cuisinier: req.params.id}).exec(function(err, datas){
+            // console.log("--------",req.params.id);
+            // console.log("========",datas);
             if(err){
                 console.log('Error : ', err);
             }else{
-                res.render("../views/ateliers/admin/liste",{ title: 'Cook and Go', datas:datas } );
+                res.render("../views/ateliers/admin/liste",{ title: 'Cook and Go', datas:datas, uid:req.params.id } );
             } 
         });
     },
@@ -38,15 +38,26 @@ module.exports = {
             if(err){
                 console.log('Error : ', err);
             }else{
-                res.render("../views/ateliers/show",{data:data});
+                res.render("ateliers/show",{data:data});
             } 
         });
     },
 
     //redirection à la page de creation
     create : function(req, res){  
-        console.log("ateliers/admin/create")   ;
-         res.render("ateliers/admin/create");
+        Atelier.findOne({_id:req.params.id})
+            .populate('users')
+            .exec(function(err, data){
+            if(err){
+                console.log('Error : ', err);
+            }else{
+                console.log('my data :=================== ', data);
+                res.render("ateliers/admin/create",{data:data});
+            } 
+        });
+       console.log("ateliers/admin/create")   ;
+        // res.render("ateliers/admin/create",{ uid:req.params.id});
+        // res.redirect("/ateliers/admin/create/"+req.params.id);
         // res.json({
         //     description: 'Protected information. Congrats!',
         //     data:req.body,

@@ -1,4 +1,3 @@
-var http = require('http');
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 var User = require("../models/User");
@@ -11,9 +10,8 @@ var  SECRET = 'simplon_reunion_4p_dw-AB_IH_JFG'; // /!\ COMMENTER LORS DE LA MIS
 module.exports = {
     //Liste les données
     login: function (req, res) {        
-        console.log("req = > ",req.body);
         User.findOne({
-            email: req.body.logemail
+            'email': req.body.logemail
         }).exec(function (err, data) {
             bcrypt.compare(req.body.logpassword, data.password, function (err, result) {
                 if (result === true) {
@@ -23,37 +21,26 @@ module.exports = {
                         console.log("data ok = > ",data);
                         var donnees = { email: data.email, role: data.role }
                         // then return a token, secret key should be an env variable
-                        const token = jwt.sign(donnees, SECRET, { expiresIn: '10s' });
-                        req.headers["authorization"] = "Bearer " +token;
-                        req.token = token;
-                        console.log("token ok = > ",req.headers["authorization"]);
-                        // res.json({
-                        //     message: 'Authenticated! Use this token in the "Authorization" header',
-                        //     token: token
-                        // });
+                        const token = jwt.sign(donnees, SECRET, { expiresIn: '24h' });                        
+                        req.session.token = token;
                         // res.render("ateliers/admin/liste", {
                         //     token: token
                         // });
                         res.redirect('/ateliers/admin/'+data._id);
                     }
                 } else {
-                  res.redirect('/particuliers/auth');
+                  res.redirect('/cuisiniers/auth');
                 }
             })           
         });
     },
     //Liste les données
     logout: function (req, res) {
-        User.find({}).exec(function (err, datas) {
-            if (err) {
-                console.log('Error : ', err);
-            } else {
-                res.render("../views/cuisiniers/index", {
+        req.session.token = "";
+                res.render("../views/ateliers/index", {
                     title: 'User 974',
                     datas: ["samsung", "iphone", "LG"]
                 });
-            }
-        });
     },
     //Liste les données
     list: function (req, res) {
@@ -86,7 +73,7 @@ module.exports = {
 
     //redirection à la page de creation
     auth: function (req, res) {
-        res.render("../views/cuisiniers/login");
+        res.render("cuisiniers/login");
     },
 
     //enregistrement des données
