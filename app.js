@@ -17,10 +17,8 @@ var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 //mongodb://<dbuser>:<dbpassword>@ds127851.mlab.com:27851/simplon-voitures
 // mongoose.connect('mongodb://localhost/Idriss')
-mongoose.connect(urlDB, { useNewUrlParser: true } )
-
-
-  //.then(() =>  console.log('connection succesful'))
+mongoose.connect(urlDB)
+    .then(() =>  console.log('connection succesful'))
 
 
 // view engine setup
