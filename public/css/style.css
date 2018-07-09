@@ -1,5 +1,4 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -10,4 +9,64 @@ a {
 .bg-orange{
 
   background-color: #d05c62;
+}
+
+
+
+
+
+
+header .navbar{
+  background-image: url('/img/food.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 200px;
+}
+
+h1{
+  padding-top: 30px;
+  text-transform: uppercase;
+}
+
+.navbar .container .navbar-brand{
+  
+  justify-content: center;
+}
+
+
+img{
+  border-radius: 4px;
+}
+
+.navbar-brand{
+  display: inline-flex;
+}
+
+/*BOUTON*/
+.btn{
+  background-color: #d05c62;
+  text-decoration: none;
+  color: white;
+}
+
+/*Espacement entre les lettres*/
+.premier{
+  letter-spacing: 1px;
+}
+
+
+
+/*FOOTER*/
+
+#footer{
+  background-color: #d05c62;
+}
+
+
+/*Police de la charte graphique*/
+p {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+h1 {
+  font-family: 'Roboto', sans-serif;
 }

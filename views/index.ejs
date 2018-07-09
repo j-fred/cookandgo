@@ -1,6 +1,5 @@
-
-
 <!DOCTYPE html>
+
 
 
 <html>
@@ -9,19 +8,41 @@
   <title>
     <%= title %>
   </title>
-  <link rel='stylesheet' href='/stylesheets/style.css' />
+  
   <% include ./partials/head.ejs %>
 </head>
 <% include ./partials/header.ejs %>
 
   <body>
-    <h1>
-      <%= title %>
-    </h1>
-    <p>Welcome to
-      <%= title %>
-    </p>
-    <% include ./partials/footer.ejs %>
-  </body>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <a type="" role="button" href="#" class="btn  mt-5">Je suis un cuisinier</a>
+        </div>
+      </div>
+    </div>
 
+    <div class="container ">
+      <div class="row ">
+        <div class="col-sm-12">
+
+            <div class="jumbotron mt-5 text-center">
+                <h1 class="display-4">Atelier</h1>
+                <p class="lead">This is a simple hero unit, a simple jumbotron-style component.</p>
+                <img class="" src="/img/atelierpoulet.jpg" width="260" height="100">
+                <hr class="my-4">
+                <a class="btn btn-lg" href="#" role="button">Réservation</a>
+              </div>
+        <h1>
+          <%= title %>
+        </h1>
+        <p>Welcome to
+          <%= title %>
+        </p>
+      </div>
+      </div>
+    </div>
+    
+  </body>
+  <% include ./partials/footer.ejs %>
 </html>
