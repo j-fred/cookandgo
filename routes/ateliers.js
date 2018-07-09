@@ -7,7 +7,7 @@ var jwtC = require("../controllers/jwtController");
 //recuperer les datas
 router.get("/", data.listaccueil);
 //recuperer les datas
-router.get("/admin",  data.list);
+router.get("/admin/:id",  data.list);
 
 //voir un data par son id
 router.get("/show/:id", data.show);

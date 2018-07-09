@@ -20,7 +20,10 @@ module.exports = {
 
     //Liste les données
     list : function(req, res) {
-        Atelier.find({}).exec(function(err, datas){
+        var objID = new ObjectID(req.params.id);
+        Atelier.find({_cuisinier: objID}).exec(function(err, datas){
+            console.log("--------",req.params.id);
+            console.log("========",datas);
             if(err){
                 console.log('Error : ', err);
             }else{

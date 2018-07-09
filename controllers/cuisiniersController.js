@@ -34,7 +34,7 @@ module.exports = {
                         // res.render("ateliers/admin/liste", {
                         //     token: token
                         // });
-                        res.redirect('/ateliers/admin');
+                        res.redirect('/ateliers/admin/'+data._id);
                     }
                 } else {
                   res.redirect('/particuliers/auth');
