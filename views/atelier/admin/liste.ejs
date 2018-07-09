@@ -1,0 +1,66 @@
+<% include ../../partials/head.ejs %>
+ <% include ../../partials/header.ejs %>
+    <!--pour le lien "a", contient le lien vers la page "create"-->
+    <h1 class="text-center mb-5 mt-5 pb-2 border-bottom-red mx-auto" ></i>Gestion des ateliers </h1>
+    
+    <!-- NE PAS AJOUTER DE type="button" sur un a quand il y a bootstrap de charger -->
+    <!-- Il génère une difference entre chrome et firefox -->
+    <div class="container-fluid bg-orange p-3 d-flex justify-content-center  "><a href="/voitures/admin/create" class="btn btn-success p-50 py-3 mb-2  "> <i class="far fa-plus-square color-grey mx-2"></i>  Ajouter atelier </a></div>
+    <table class="table table-striped table-light">
+      <thead class="table-dark">
+        <tr class="text-uppercase">
+          <th scope="col">atelier</th>
+          <th scope="col">date</th>
+          <th scope="col">horaire</th>
+          <th scope="col">durée</th>
+          <th scope="col">nb de place dispo.</th>
+          <th scope="col">nb de place réservée</th>
+          <th scope="col">description</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+
+      
+      <tbody>
+       
+          <tr>
+            <!--liste du tableau-->
+            <td scope="row"></td>
+            <!--pour le lien "a", contient le lien vers la page "edit"-->
+            <td></td> 
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+           
+            <td><a href="" class="btn btn-outline-dark"> <i class="far fa-edit"></i> Editer</a> </td>
+            <!--bouton qui édite dans la derniere colonne-->
+            
+          </tr>
+      
+      </tbody>
+    </table>
+  
+  
+  <script>
+    (function() {
+      $(window).scroll(function() {
+  if ($(this).scrollTop() > 100) {
+		$('i').fadeIn();
+	} else {
+	  $('i').fadeOut();
+	}
+});
+      $('a[href^="#"]').click(function(){
+	var the_id = $(this).attr("href");
+	$('html,body').animate({
+		scrollTop:$(the_id).offset().top
+	}, 'slow');
+	return false;
+});
+})
+  </script>
+    <% include ../../partials/footer.ejs %>
