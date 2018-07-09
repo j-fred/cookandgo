@@ -1,10 +1,12 @@
+var http = require('http');
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 var User = require("../models/User");
 //
 var jwt = require('jsonwebtoken');
-var SECRET = process.env.SECRETKEY;//var avec la base mongo 'simplon_reunion_4p_dw-AB_IH_JFG'
-    SECRET = 'simplon_reunion_4p_dw-AB_IH_JFG'; // /!\ COMMENTER LORS DE LA MISE EN PROD, UNIQUEMENT POUR LES TESTS'
+
+//var SECRET = process.env.SECRETKEY;//var avec la base mongo 'simplon_reunion_4p_dw-AB_IH_JFG'
+var  SECRET = 'simplon_reunion_4p_dw-AB_IH_JFG'; // /!\ COMMENTER LORS DE LA MISE EN PROD, UNIQUEMENT POUR LES TESTS'
 
 module.exports = {
     //Liste les données
@@ -21,16 +23,18 @@ module.exports = {
                         console.log("data ok = > ",data);
                         var donnees = { email: data.email, role: data.role }
                         // then return a token, secret key should be an env variable
-                        const token = jwt.sign(donnees, SECRET, { expiresIn: '120s' });
-                        console.log("token ok = > ",token);
+                        const token = jwt.sign(donnees, SECRET, { expiresIn: '10s' });
+                        req.headers["authorization"] = "Bearer " +token;
+                        req.token = token;
+                        console.log("token ok = > ",req.headers["authorization"]);
                         // res.json({
                         //     message: 'Authenticated! Use this token in the "Authorization" header',
                         //     token: token
                         // });
-                        // res.render("../views/ateliers/admin/liste", {
-                        //     title: 'User 974'
+                        // res.render("ateliers/admin/liste", {
+                        //     token: token
                         // });
-                       res.redirect('/ateliers/admin');
+                        res.redirect('/ateliers/admin');
                     }
                 } else {
                   res.redirect('/particuliers/auth');

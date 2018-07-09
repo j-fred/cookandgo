@@ -74,7 +74,7 @@ module.exports = {
             if(err){
                 console.log("Error ", err);
             } else{
-                res.render("../views/ateliers/edit",{data: data} );
+                res.render("ateliers/admin/edit",{data: data} );
             } 
         });
     },

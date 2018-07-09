@@ -15,32 +15,30 @@
           <th scope="col">durée</th>
           <th scope="col">nb de place dispo.</th>
           <th scope="col">nb de place réservée</th>
-          <th scope="col">description</th>
-          <th scope="col"></th>
+          <th scope="col">Prix</th>
           <th scope="col"></th>
         </tr>
       </thead>
 
       
       <tbody>
-       
+      <% datas.forEach(function(data){ %>
           <tr>
             <!--liste du tableau-->
-            <td scope="row"></td>
-            <!--pour le lien "a", contient le lien vers la page "edit"-->
-            <td></td> 
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td scope="row"><%= data.titre %></td>
+            <td><%= data.date %></td> 
+            <td><%= data.horaire %></td>
+            <td><%= data.duree %>min</td>
+            <td><%= data.places_disponible %></td>
+            <td><%= data.places_reservees %></td>
+            <td><%= data.prix %>&euro;</td>
            
-            <td><a href="" class="btn btn-outline-dark"> <i class="far fa-edit"></i> Editer</a> </td>
+            <td><a href="/ateliers/admin/edit/<%= data._id %>" class="btn btn-outline-dark"> <i class="far fa-edit"></i> Editer</a> </td>
             <!--bouton qui édite dans la derniere colonne-->
             
           </tr>
-      
+          <% }); %>
+
       </tbody>
     </table>
   
