@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var data = require("../controllers/usersController");
+var data = require("../controllers/particuliersController");
 var jwtC = require("../controllers/jwtController");
 
 // Routes pour la vérification du login
@@ -17,7 +17,7 @@ router.get("/", data.list);
 router.get("/show/:id", data.show);
 
 //cree un data
-router.get("/create", data.create);
+router.get("/auth", data.auth);
 
 //sauvegarder un data. /!\ cest un POST 
 router.post("/save", data.save);
