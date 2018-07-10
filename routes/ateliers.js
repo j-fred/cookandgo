@@ -7,22 +7,22 @@ var jwtC = require("../controllers/jwtController");
 //recuperer les datas
 router.get("/", data.listaccueil);
 //recuperer les datas
-router.get("/admin", jwtC.ensureToken, jwtC.verifAdmin, data.list);
+router.get("/admin", data.list);
 
 //voir un data par son id
 router.get("/show/:id", data.show);
 
 //cree un data
-router.get("/admin/create", jwtC.ensureToken, jwtC.verifAdmin, data.create);
+router.get("/admin/create", data.create);
 
 //sauvegarder un data. /!\ cest un POST 
-router.post("/admin/save", jwtC.ensureToken, jwtC.verifAdmin, data.save);
+router.post("/admin/save",  data.save);
 
 //editer un data
-router.get("/admin/edit/:id", jwtC.ensureToken, jwtC.verifAdmin, data.edit);
+router.get("/admin/edit/:id", data.edit);
 
 //edit update.  /!\ cest un POST 
-router.post("/admin/update/:id", jwtC.ensureToken, jwtC.verifAdmin, data.update);
+router.post("/admin/update/:id", data.update);
 
 
 //export du module router

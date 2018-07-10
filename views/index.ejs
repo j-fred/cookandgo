@@ -1,11 +1,49 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+ 
+      <% include partials/head.ejs %>
+  
+  <body class="bg-orange">
+    <div class="container-fluid ">
+  
+    <div class="container bg-light border-top-red mb-5 pt-5 pb-5 mt-3">
+      <div class="jumbotron">  <h1>Bienvenue !</h1>
+    <p>Nos Ateliers Cuisines</p> </div>
+        <!-- NE PAS AJOUTER DE type="button" sur un a quand il y a bootstrap de charger -->
+        <!-- Il génère une difference entre chrome et firefox -->
+        <p class="lead"> Vous voulez proposez votre propre atelier et vous êtes cuisinier. Cliquez sur le bouton ci-dessous </p>
+        <a href="/cuisiniers/auth" class="btn btn-danger mt-3 text-uppercase">
+          <i class="fas fa-utensils mr-3"></i> Je suis cuisinier </a>
+       
+
+        <h1 class="text-center p-5">Formations disponible :</h1>
+        <div class="row mx-auto">
+        
+                    <div class="col-md-4 pb-3 pt-3 ">
+                        <div class="card">
+                            <div>
+                                <img src="/img/" class="card-img-top img-fluid">
+                            </div>
+                            <div class="card-body text-center">
+                                <h5 class="font-weight-bold">
+                                 
+                                </h5>
+                                <div class="row justify-content-center">
+                              date de début: 
+                                </div>
+                                <a href="particuliers/auth" class="btn btn-danger mt-3 text-uppercase">RESERVER</a>
+                            </div>
+                        </div>
+                    </div>
+            
+        </div>
+    </div>
+    <div class="image">
+        <img src="/img/widget21.png">
+        <div id="note">
+            4.8/5
+        </div>
+    </div>
+  </div>
   </body>
 </html>

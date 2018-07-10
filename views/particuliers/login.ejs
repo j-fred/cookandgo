@@ -1,9 +1,12 @@
 <% include ../partials/head.ejs %>
-    <div class="container-fluid bg-orange p-5">
+<body class="bg-orange"> 
+
+<div class="container-fluid p-5">
         <div class="container bg-light border-top-red p-5 ">
 
             <div class="container-fluid p-5 ">
-                    <h1 class="text-center"> Bienvenue !</h1>
+                    <a href="/" class="btn btn-outline-danger">  <i class="fas fa-reply mr-3"></i>Retour </a>
+                    <h2 class="text-center  text-uppercase"> Réserver votre atelier</h2>
                 <section class="container">
                     <div class="row">
 
@@ -18,9 +21,9 @@
 
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h3 class="panel-title  font-weight-bold"> Connectez-vous
+                                        <h4 class="panel-title  font-weight-bold"> Connectez-vous
                                             <small> à votre profil en tant que particulier </small>
-                                        </h3>
+                                        </h4>
                                     </div>
                                     <div class="panel-body">
                                         <form role="form" action="/particuliers/login" method="POST" class="needs-validation" novalidate>
@@ -58,7 +61,7 @@
 
   <!--*****************************************-->
 
-            <!-- SECTION INSCRIPTION CUISINIER -->
+            <!-- SECTION INSCRIPTION PARTICULIER -->
 
             <!--*****************************************-->
                     <div class="col-md-6 p-5">
@@ -68,9 +71,9 @@
 
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title font-weight-bold"> Inscrivez-vous
+                                    <h4 class="panel-title font-weight-bold"> Inscrivez-vous
                                         <small> en tant que particulier </small>
-                                    </h3>
+                                    </h4>
                                 </div>
                                 <div class="panel-body">
                                     <form role="form" action="/particuliers/save" method="POST" class="needs-validation" novalidate>
@@ -171,4 +174,5 @@
             }, false);
         })();
     </script>
+    </body>   
     <% include ../partials/footer.ejs %>
