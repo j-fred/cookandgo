@@ -12,7 +12,11 @@ var http = require('http');
  * Get port from environment and store in Express.
  */
 
+<<<<<<< HEAD
 var port = normalizePort(process.env.PORT || '3009');
+=======
+var port = normalizePort(process.env.PORT || '5008');
+>>>>>>> cookandgo/master
 app.set('port', port);
 
 /**
