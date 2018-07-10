@@ -7,7 +7,18 @@ var SECRET = process.env.SECRETKEY;//var avec la base mongo 'simplon_reunion_4p_
     SECRET = 'simplon_reunion_4p_dw-AB_IH_JFG'; // /!\ COMMENTER LORS DE LA MISE EN PROD, UNIQUEMENT POUR LES TESTS'
 
 module.exports = {
-    //Liste les données
+    //Liste les données dans la page index
+    listindex : function(req, res) {
+        Atelier.find({actif:{ $ne:"on" }}).exec(function(err, datas){
+            if(err){
+                console.log('Error : ', err);
+            }else{
+                res.render("../views/index",{ title: 'Cook and Go', datas:datas,
+                user:req.session.user  } );
+            } 
+        });
+    },
+    //Liste les données dans la page atelier
     listaccueil : function(req, res) {
         Atelier.find({actif:{ $ne:"on" }}).exec(function(err, datas){
             if(err){
