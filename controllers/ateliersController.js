@@ -92,7 +92,7 @@ module.exports = {
         atelier.save(function(err){
             if(err){
                 console.log(err);
-                res.render("../views/ateliers/create");
+                res.render("../views/ateliers/admin/create/");
             } else{
                 console.log("creation OK");
                 res.redirect('/ateliers/admin/'+data._id);

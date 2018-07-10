@@ -29,19 +29,46 @@
                                             </div>
                                         </div>
 
-                                    </div>
                                     <div class="form-group">
-                                            <label> Date prévu :</label>
-                                        <div class="form-group">
-                                            <input type="date" name="date" id="date" class="form-control input-sm" placeholder="" required>
-                                            <div class="invalid-feedback text-left">
-                                                Entrez la date prévu de votre atelier
-                                            </div>
+                                        <label> Nom de votre atelier</label>
+                                        <input type="text" name="titre" id="titre" class="form-control input-sm" placeholder="Nom *" required>
+                                        <div class="invalid-feedback text-left">
+                                            Entrez le nom de votre atelier
                                         </div>
-
                                     </div>
 
+                                </div>
+                                <div class="form-group">
+                                    <label> Date prévu :</label>
+                                    <div class="form-group">
+                                        <input type="date" name="date" id="date" class="form-control input-sm" placeholder="" required>
+                                        <div class="invalid-feedback text-left">
+                                            Entrez la date prévu de votre atelier
+                                        </div>
+                                    </div>
 
+                                </div>
+
+
+
+
+                                <div class="form-group">
+
+                                    <label> Heure de début :</label>
+                                    <input type="time" name="horaire" id="horaire" class="form-control input-sm" placeholder="Email Address *" required>
+                                    <div class="invalid-feedback text-left">
+                                        Entrez l'heure de début
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label> Durée estimé en heures :</label>
+                                    <input type="number" name="duree" id="duree" class="form-control input-sm" placeholder="">
+                                    <div class="invalid-feedback text-left">
+                                        Entrez la durée de votre atelier
+                                    </div>
+                                </div>
 
 
                                     <div class="form-group">
@@ -49,7 +76,7 @@
                                             <label> Heure de début :</label>
                                         <input type="time" name="horaire" id="horaire" class="form-control input-sm" placeholder="Email Address *" required>
                                         <div class="invalid-feedback text-left">
-                                            Entrez l'heure de début 
+                                            Entrez une description de votre atelier
                                         </div>
                                     </div>
                                
@@ -84,12 +111,12 @@
                                   
                               
                                     <div class="form-group">
-                                            <label> Description de votre atelier </label>
-                                        <textarea name="description" id="description" class="form-control input-sm" placeholder="" ></textarea>
-                                        <div class="invalid-feedback text-left">
-                                            Entrez une description de votre atelier 
+                                            <label> Prix </label>
+                                            <input type="number" name="prix" id="prix" class="form-control input-sm" placeholder="">
+                                            <div class="invalid-feedback text-left">
+                                                Entrez une description de votre atelier
+                                            </div>
                                         </div>
-                                    </div>
                                     <div class="form-group">
                                         <label>Image représentant votre atelier </label>
                                         <input type="hidden" class="form-control mt-2" name="image" id="image" aria-describedby="" placeholder="http://..." required>
@@ -113,14 +140,14 @@
                             
                                     <button type="submit" value="Register" class="btn btn-danger btn-block"> REGISTER</button>
 
-                                </form>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         </div>
+
         <script>
                 // Validation des champs du formulaire via JavaScript
                 (function () {
