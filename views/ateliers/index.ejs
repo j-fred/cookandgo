@@ -29,13 +29,14 @@
                   <div class="row ">
                     <% datas.forEach(function(atelier){ %>
                       <div class="col-sm-6">            
-                          <div class="jumbotron mt-5 text-center">
+                          <div class="jumbotron  mt-5 text-center">
                             <h1 class="display-4"> <%=atelier.titre %></h1>
                             <p class="lead">
                               <%=atelier.description %>
                             </p>
                             <img class="" src="/img/<%=atelier.image %>" width="260" height="100">
                             <hr class="my-4">
+                            <a class="btn btn-lg" href="#" role="button">Voir Plus</a>
                             <a class="btn btn-lg" href="#" role="button">Réservation</a>
                           </div>
                       </div>

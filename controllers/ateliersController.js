@@ -9,7 +9,7 @@ var SECRET = process.env.SECRETKEY;//var avec la base mongo 'simplon_reunion_4p_
 module.exports = {
     //Liste les données dans la page index
     listindex : function(req, res) {
-        Atelier.find({actif:{ $ne:"on" }}).exec(function(err, datas){
+        Atelier.find({actif:{ $eq:"on" }}).exec(function(err, datas){
             if(err){
                 console.log('Error : ', err);
             }else{
@@ -20,7 +20,7 @@ module.exports = {
     },
     //Liste les données dans la page atelier
     listaccueil : function(req, res) {
-        Atelier.find({actif:{ $ne:"on" }}).exec(function(err, datas){
+        Atelier.find({actif:{ $eq:"on" }}).exec(function(err, datas){
             if(err){
                 console.log('Error : ', err);
             }else{
