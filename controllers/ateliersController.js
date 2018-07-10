@@ -13,7 +13,8 @@ module.exports = {
             if(err){
                 console.log('Error : ', err);
             }else{
-                res.render("../views/ateliers/index",{ title: 'Cook and Go', datas:datas } );
+                res.render("../views/ateliers/index",{ title: 'Cook and Go', datas:datas,
+                user:req.session.user  } );
             } 
         });
     },
@@ -27,7 +28,11 @@ module.exports = {
             if(err){
                 console.log('Error : ', err);
             }else{
-                res.render("../views/ateliers/admin/liste",{ title: 'Cook and Go', datas:datas, uid:req.params.id } );
+                res.render("../views/ateliers/admin/liste",{ 
+                    title: 'Cook and Go', 
+                    datas:datas,
+                    user:req.session.user 
+                });
             } 
         });
     },
@@ -52,7 +57,10 @@ module.exports = {
                 console.log('Error : ', err);
             }else{
                 console.log('my data :=================== ', data);
-                res.render("ateliers/admin/create",{data:data});
+                res.render("ateliers/admin/create",{
+                    data:data,
+                    user:req.session.user
+                });
             } 
         });
        console.log("ateliers/admin/create")   ;
@@ -75,7 +83,7 @@ module.exports = {
                 res.render("../views/ateliers/create");
             } else{
                 console.log("creation OK");
-                res.redirect("/ateliers/show/" + atelier._id);
+                res.redirect('/ateliers/admin/'+data._id);
             } 
         });
     },
@@ -88,7 +96,11 @@ module.exports = {
             if(err){
                 console.log("Error ", err);
             } else{
-                res.render("ateliers/admin/edit",{data: data} );
+                console.log("page edit ==>",req.session.user);
+                res.render("ateliers/admin/edit",{ 
+                    data:data,
+                    user:req.session.user
+                } );
             } 
         });
     },
@@ -100,7 +112,7 @@ module.exports = {
                 console.log(err);
                 res.render("../views/ateliers/edit",{data:req.body} );
             } 
-            res.redirect("/ateliers/show/" + data._id);
+            res.redirect('/ateliers/admin/'+req.session.user._id);
             
         });
     },

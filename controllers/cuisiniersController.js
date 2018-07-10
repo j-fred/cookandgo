@@ -18,11 +18,20 @@ module.exports = {
                     if (err) {
                         console.log('Error : ', err);
                     } else {
-                        console.log("data ok = > ",data);
+                       // console.log("data ok = > ",data);
                         var donnees = { email: data.email, role: data.role }
                         // then return a token, secret key should be an env variable
                         const token = jwt.sign(donnees, SECRET, { expiresIn: '24h' });                        
                         req.session.token = token;
+                        req.session.user = { 
+                            _id: data._id,
+                            nom: data.nom,
+                            prenom: data.prenom,
+                            specialite: data.specialite,
+                            email: data.email
+                        };
+
+                        console.log("session.user ok = > ",req.session.user);
                         // res.render("ateliers/admin/liste", {
                         //     token: token
                         // });
@@ -36,11 +45,13 @@ module.exports = {
     },
     //Liste les données
     logout: function (req, res) {
-        req.session.token = "";
-                res.render("../views/ateliers/index", {
-                    title: 'User 974',
-                    datas: ["samsung", "iphone", "LG"]
-                });
+        req.session.token   = " ";
+        req.session.user    = " ";
+        res.redirect('/ateliers');
+        // res.render("ateliers/index", {
+        //     title: 'User 974',
+        //     datas: ["samsung", "iphone", "LG"]
+        // });
     },
     //Liste les données
     list: function (req, res) {
