@@ -1,0 +1,21 @@
+<!-- views/partials/header.ejs -->
+<!-- Just an image -->
+<header>
+
+    <nav class="navbar navbar-light col-sm-12">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="img/logo.png" class="logo" width="80" height="80" class="d-inline-block align-top" alt="">
+                <h1 class="premier">Cook <span>& Go</span></h1>
+            </a>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                <% if (user!=" "){ %> 
+                    <h5>Bonjour, <%= user.prenom %> <%= user.nom %> </h5>
+                    <a href="/cuisiniers/logout" class="btn btn-danger" >Se déconnecter</a>
+                <% } %>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>

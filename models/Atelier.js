@@ -11,8 +11,8 @@ var AtelierSchema = new mongoose.Schema({
 	prix: {				type: Number,	required: true    },
 	image: {        	type: String,	required: true    },
 	actif: {        	type: String,	required: true,	default: " "    },
-	_cuisinier: {		type: String,	ref: 'users'	},
-	_particuliers: [{	type: String,	ref: 'users'	}]
+	_cuisinier: {		type: mongoose.Schema.Types.ObjectId,	ref: 'users'	},
+	_particuliers: [{	type: mongoose.Schema.Types.ObjectId,	ref: 'users'	}]
 });
 
 module.exports = mongoose.model("ateliers", AtelierSchema);

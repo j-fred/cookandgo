@@ -7,24 +7,43 @@ var SECRET = process.env.SECRETKEY;//var avec la base mongo 'simplon_reunion_4p_
     SECRET = 'simplon_reunion_4p_dw-AB_IH_JFG'; // /!\ COMMENTER LORS DE LA MISE EN PROD, UNIQUEMENT POUR LES TESTS'
 
 module.exports = {
-    //Liste les données
-    listaccueil : function(req, res) {
-        Atelier.find({}).exec(function(err, datas){
+    //Liste les données dans la page index
+    listindex : function(req, res) {
+        Atelier.find({actif:{ $ne:"on" }}).exec(function(err, datas){
             if(err){
                 console.log('Error : ', err);
             }else{
-                res.render("../views/ateliers/index",{ title: 'Cook and Go', datas:datas } );
+                res.render("../views/index",{ title: 'Cook and Go', datas:datas,
+                user:req.session.user  } );
+            } 
+        });
+    },
+    //Liste les données dans la page atelier
+    listaccueil : function(req, res) {
+        Atelier.find({actif:{ $ne:"on" }}).exec(function(err, datas){
+            if(err){
+                console.log('Error : ', err);
+            }else{
+                res.render("../views/ateliers/index",{ title: 'Cook and Go', datas:datas,
+                user:req.session.user  } );
             } 
         });
     },
 
     //Liste les données
     list : function(req, res) {
-        Atelier.find({}).exec(function(err, datas){
+        // var objID = new ObjectID(req.params.id);
+        Atelier.find({_cuisinier: req.params.id}).exec(function(err, datas){
+            // console.log("--------",req.params.id);
+            // console.log("========",datas);
             if(err){
                 console.log('Error : ', err);
             }else{
-                res.render("../views/ateliers/admin/liste",{ title: 'Cook and Go', datas:datas } );
+                res.render("../views/ateliers/admin/liste",{ 
+                    title: 'Cook and Go', 
+                    datas:datas,
+                    user:req.session.user 
+                });
             } 
         });
     },
@@ -35,15 +54,29 @@ module.exports = {
             if(err){
                 console.log('Error : ', err);
             }else{
-                res.render("../views/ateliers/show",{data:data});
+                res.render("ateliers/show",{data:data});
             } 
         });
     },
 
     //redirection à la page de creation
     create : function(req, res){  
-        console.log("ateliers/admin/create")   ;
-         res.render("ateliers/admin/create");
+        Atelier.findOne({_id:req.params.id})
+            .populate('users')
+            .exec(function(err, data){
+            if(err){
+                console.log('Error : ', err);
+            }else{
+                console.log('my data :=================== ', data);
+                res.render("ateliers/admin/create",{
+                    data:data,
+                    user:req.session.user
+                });
+            } 
+        });
+       console.log("ateliers/admin/create")   ;
+        // res.render("ateliers/admin/create",{ uid:req.params.id});
+        // res.redirect("/ateliers/admin/create/"+req.params.id);
         // res.json({
         //     description: 'Protected information. Congrats!',
         //     data:req.body,
@@ -61,7 +94,7 @@ module.exports = {
                 res.render("../views/ateliers/admin/create/");
             } else{
                 console.log("creation OK");
-                res.redirect("/ateliers/list/" + atelier._id);
+                res.redirect('/ateliers/admin/'+data._id);
             } 
         });
     },
@@ -74,7 +107,11 @@ module.exports = {
             if(err){
                 console.log("Error ", err);
             } else{
-                res.render("../views/ateliers/edit",{data: data} );
+                console.log("page edit ==>",req.session.user);
+                res.render("ateliers/admin/edit",{ 
+                    data:data,
+                    user:req.session.user
+                } );
             } 
         });
     },
@@ -86,7 +123,7 @@ module.exports = {
                 console.log(err);
                 res.render("../views/ateliers/edit",{data:req.body} );
             } 
-            res.redirect("/ateliers/show/" + data._id);
+            res.redirect('/ateliers/admin/'+req.session.user._id);
             
         });
     },
