@@ -23,9 +23,14 @@ header .navbar{
   height: 200px;
 }
 
+span{
+  color: #d05c62;
+}
+
 h1{
   padding-top: 30px;
   text-transform: uppercase;
+  
 }
 
 .navbar .container .navbar-brand{
@@ -69,4 +74,5 @@ p {
 }
 h1 {
   font-family: 'Roboto', sans-serif;
+  
 }
