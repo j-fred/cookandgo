@@ -10,7 +10,6 @@
 
             <!--*****************************************-->
                     <div class="row ">
-
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h3 class="panel-title mb-3"> Bienvenue !
@@ -19,104 +18,61 @@
                             </div>
                             <div class="panel-body">
                                 <form role="form" action="/ateliers/admin/save" method="POST" class="needs-validation" novalidate enctype="multipart/form-data">
-                                    <div class="form-group">
-
-                                        <div class="form-group">
-                                            <label> Nom de votre atelier</label>
-                                            <input type="text" name="titre" id="titre" class="form-control input-sm" placeholder="Nom *" required>
-                                            <div class="invalid-feedback text-left">
-                                                Entrez le nom de votre atelier
-                                            </div>
-                                        </div>
-
-                                    <div class="form-group">
+                                    <div class="form-group">    
                                         <label> Nom de votre atelier</label>
                                         <input type="text" name="titre" id="titre" class="form-control input-sm" placeholder="Nom *" required>
                                         <div class="invalid-feedback text-left">
-                                            Entrez le nom de votre atelier
+                                            Entrez le titre de votre atelier
                                         </div>
                                     </div>
-
-                                </div>
-                                <div class="form-group">
-                                    <label> Date prévu :</label>
                                     <div class="form-group">
+                                        <label> Date prévu :</label>
                                         <input type="date" name="date" id="date" class="form-control input-sm" placeholder="" required>
                                         <div class="invalid-feedback text-left">
                                             Entrez la date prévu de votre atelier
                                         </div>
                                     </div>
-
-                                </div>
-
-
-
-
-                                <div class="form-group">
-
-                                    <label> Heure de début :</label>
-                                    <input type="time" name="horaire" id="horaire" class="form-control input-sm" placeholder="Email Address *" required>
-                                    <div class="invalid-feedback text-left">
-                                        Entrez l'heure de début
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-
-                                    <label> Durée estimé en heures :</label>
-                                    <input type="number" name="duree" id="duree" class="form-control input-sm" placeholder="">
-                                    <div class="invalid-feedback text-left">
-                                        Entrez la durée de votre atelier
-                                    </div>
-                                </div>
-
-
                                     <div class="form-group">
-                                     
-                                            <label> Heure de début :</label>
+                                        <label> Heure de début :</label>
                                         <input type="time" name="horaire" id="horaire" class="form-control input-sm" placeholder="Email Address *" required>
                                         <div class="invalid-feedback text-left">
-                                            Entrez une description de votre atelier
+                                            Entrez l'heure de début 
                                         </div>
                                     </div>
-                               
                                     <div class="form-group">                                    
                                         <label> Durée estimé en heures :</label>
                                         <input type="number" name="duree" id="duree" class="form-control input-sm" placeholder="" >
                                         <div class="invalid-feedback text-left">
                                             Entrez la durée de votre atelier
                                         </div>
-                                     </div>
+                                    </div>
                                     <div class="form-group">                                    
-                                        <label>PLaces disponible:</label>
-                                        <input type="number" name="places_disponible" id="places_disponible" class="form-control input-sm" placeholder="" >
+                                        <label>Places disponible:</label>
+                                        <input type="number" name="places_disponible" id="places_disponible" min="2"  class="form-control input-sm" placeholder="" >
                                         <div class="invalid-feedback text-left">
-                                            Entrez la durée de votre atelier
+                                            Entrez le nombre de places disponible pour votre atelier
                                         </div>
-                                     </div>
+                                    </div>
                                     <div class="form-group">                                    
                                         <label> Place reservées :</label>
-                                        <input type="number" name="places_reservees" id="places_reservees" class="form-control input-sm" value="0" placeholder="" >
-                                        <div class="invalid-feedback text-left">
-                                            Entrez la durée de votre atelier
+                                        <input type="number" name="places_reservees" id="places_reservees" class="form-control input-sm" value="0" readonly >
+                                        <div class="invalid-feedback text-left">                                            
                                         </div>
-                                     </div>
+                                    </div>
                                     <div class="form-group">                                    
-                                        <label> prix :</label>
-                                        <input type="number" name="prix" id="prix" class="form-control input-sm" value="0" placeholder="" >
+                                        <label>Prix</label>
+                                        <input type="number" name="prix" id="prix" class="form-control input-sm"  min="20" value="30" placeholder="" >
                                         <div class="invalid-feedback text-left">
                                             Entrez la durée de votre atelier
                                         </div>
-                                     </div>
-                                  
-                              
+                                    </div>
                                     <div class="form-group">
-                                            <label> Prix </label>
-                                            <input type="number" name="prix" id="prix" class="form-control input-sm" placeholder="">
-                                            <div class="invalid-feedback text-left">
-                                                Entrez une description de votre atelier
-                                            </div>
+                                        <label>Description de votre atelier </label>
+                                        <textarea name="description" id="description" class="form-control input-sm" placeholder="" ></textarea>
+                                        <div class="invalid-feedback text-left">
+                                            Entrez une description de votre atelier 
                                         </div>
+                                    </div>
                                     <div class="form-group">
                                         <label>Image représentant votre atelier </label>
                                         <input type="hidden" class="form-control mt-2" name="image" id="image" aria-describedby="" placeholder="http://..." required>
@@ -125,27 +81,18 @@
                                             Mettre une image
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <input type="checkbox" class="form-control" name="actif" id="actif">
-                                        <label>Mettre en ligne</label>
-                                        <div class="invalid-feedback text-left">
-                                            Mettre une image
-                                        </div>
-                                    </div>id _cuisinier
-                                    <input type="text" class="form-control mt-2" name="_cuisinier" id="_cuisinier" aria-describedby=""value="<%= user._id %>" required>
-                                       
-
-
-                                  
-                            
-                                    <button type="submit" value="Register" class="btn btn-danger btn-block"> REGISTER</button>
-
-                            </form>
+                                    <div class="form-group text-center">
+                                        <label>Publier cette atelier</label>
+                                        <input type="checkbox" class="form-control" name="actif" id="actif" >
+                                    </div>
+                                    <input type="hidden" class="form-control mt-2" name="_cuisinier" id="_cuisinier" aria-describedby=""value="<%= user._id %>" required>
+                                    <button type="submit" value="Register" class="btn btn-danger btn-block">SAUVEGARDER</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
 
         <script>
