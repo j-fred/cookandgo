@@ -1,5 +1,20 @@
-<% if (user!=" "){ %> 
-    <h1>Bonjour, <%= user.prenom %> <%= user.nom %> </h1>
-    <h1><%= user._id %> </h1>
-    <a href="/cuisiniers/logout" class="btn btn-danger" >Logout</a>
-<% } %>
+<!-- views/partials/header.ejs -->
+<!-- Just an image -->
+<header>
+
+    <nav class="navbar navbar-light col-sm-12">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="img/logo.png" class="logo" width="80" height="80" class="d-inline-block align-top" alt="">
+                <h1 class="premier">Cook <span>& Go</span></h1>
+            </a>
+            <div class="">
+                <% if (user!=" "){ %> 
+                    <h1>Bonjour, <%= user.prenom %> <%= user.nom %> </h1>
+                    <h1><%= user._id %> </h1>
+                    <a href="/cuisiniers/logout" class="btn btn-danger" >Logout</a>
+                <% } %>
+            </div>
+        </div>
+    </nav>
+</header>
