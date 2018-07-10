@@ -7,11 +7,11 @@ var bcrypt = require('bcrypt');
 var UserSchema = new mongoose.Schema({
     nom : {         type: String,   required: true    },
     prenom : {      type: String,   required: true    },
-	email : {       type: String,   unique: true,        required: true    },
-	password : {    type: String,   required: true    },
-	phone : {   	type: String    },
-	specialite : {  type: String    },
-	role : {        type: Number,   default: 1    }
+    email : {       type: String,   unique: true,        required: true    },
+    password : {    type: String,   required: true    },
+    phone : {   	  type: String    },
+    specialite : {  type: String    },
+    role : {        type: Number,   default: 1    }
   });
 
 //hashing du mot de passe a&vant de l'enregistrer dans la base de donnée

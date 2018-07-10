@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var data = require("../controllers/cuisiniersController");
-var jwtC = require("../controllers/jwtController");
+var jwtU = require("../utils/jwt.utils");
 
 // Routes pour la vérification du login
 router.post("/login", data.login);

@@ -3,53 +3,55 @@ var bcrypt = require('bcrypt');
 var User = require("../models/User");
 //
 var jwt = require('jsonwebtoken');
-var SECRET = process.env.SECRETKEY;//var avec la base mongo 'simplon_reunion_4p_dw-AB_IH_JFG'
-    SECRET = 'simplon_reunion_4p_dw-AB_IH_JFG'; // /!\ COMMENTER LORS DE LA MISE EN PROD, UNIQUEMENT POUR LES TESTS'
+
+//var SECRET = process.env.SECRETKEY;//var avec la base mongo 'simplon_reunion_4p_dw-AB_IH_JFG'
+var  SECRET = 'simplon_reunion_4p_dw-AB_IH_JFG'; // /!\ COMMENTER LORS DE LA MISE EN PROD, UNIQUEMENT POUR LES TESTS'
 
 module.exports = {
     //Liste les données
     login: function (req, res) {        
-        console.log("req = > ",req.body);
         User.findOne({
-            email: req.body.logemail
+            'email': req.body.logemail
         }).exec(function (err, data) {
             bcrypt.compare(req.body.logpassword, data.password, function (err, result) {
                 if (result === true) {
                     if (err) {
                         console.log('Error : ', err);
                     } else {
-                        console.log("data ok = > ",data);
+                       // console.log("data ok = > ",data);
                         var donnees = { email: data.email, role: data.role }
                         // then return a token, secret key should be an env variable
-                        const token = jwt.sign(donnees, SECRET, { expiresIn: '120s' });
-                        console.log("token ok = > ",token);
-                        // res.json({
-                        //     message: 'Authenticated! Use this token in the "Authorization" header',
+                        const token = jwt.sign(donnees, SECRET, { expiresIn: '24h' });                        
+                        req.session.token = token;
+                        req.session.user = { 
+                            _id: data._id,
+                            nom: data.nom,
+                            prenom: data.prenom,
+                            specialite: data.specialite,
+                            email: data.email
+                        };
+
+                        console.log("session.user ok = > ",req.session.user);
+                        // res.render("ateliers/admin/liste", {
                         //     token: token
                         // });
-                        // res.render("../views/ateliers/admin/liste", {
-                        //     title: 'User 974'
-                        // });
-                       res.redirect('/ateliers/admin');
+                        res.redirect('/ateliers/admin/'+data._id);
                     }
                 } else {
-                  res.redirect('/particuliers/auth');
+                  res.redirect('/cuisiniers/auth');
                 }
             })           
         });
     },
     //Liste les données
     logout: function (req, res) {
-        User.find({}).exec(function (err, datas) {
-            if (err) {
-                console.log('Error : ', err);
-            } else {
-                res.render("../views/cuisiniers/index", {
-                    title: 'User 974',
-                    datas: ["samsung", "iphone", "LG"]
-                });
-            }
-        });
+        req.session.token   = " ";
+        req.session.user    = " ";
+        res.redirect('/ateliers');
+        // res.render("ateliers/index", {
+        //     title: 'User 974',
+        //     datas: ["samsung", "iphone", "LG"]
+        // });
     },
     //Liste les données
     list: function (req, res) {
@@ -82,7 +84,7 @@ module.exports = {
 
     //redirection à la page de creation
     auth: function (req, res) {
-        res.render("../views/cuisiniers/login");
+        res.render("cuisiniers/login");
     },
 
     //enregistrement des données

@@ -1,4 +1,5 @@
 <% include ../../partials/head.ejs %>
+<% include ../../partials/header.ejs %>
         <div class="container-fluid bg-orange p-5">
             <div class="container bg-light border-top-red p-5 ">
               
@@ -17,12 +18,12 @@
                                 </h3>
                             </div>
                             <div class="panel-body">
-                                <form role="form" action="/ateliers/admin/save" method="POST" class="needs-validation" novalidate>
+                                <form role="form" action="/ateliers/admin/save" method="POST" class="needs-validation" novalidate enctype="multipart/form-data">
                                     <div class="form-group">
 
                                         <div class="form-group">
                                             <label> Nom de votre atelier</label>
-                                            <input type="text" name="nomatelier" id="nomatelier" class="form-control input-sm" placeholder="Nom *" required>
+                                            <input type="text" name="titre" id="titre" class="form-control input-sm" placeholder="Nom *" required>
                                             <div class="invalid-feedback text-left">
                                                 Entrez le nom de votre atelier
                                             </div>
@@ -46,16 +47,36 @@
                                     <div class="form-group">
                                      
                                             <label> Heure de début :</label>
-                                        <input type="time" name="hdebut" id="hdebut" class="form-control input-sm" placeholder="Email Address *" required>
+                                        <input type="time" name="horaire" id="horaire" class="form-control input-sm" placeholder="Email Address *" required>
                                         <div class="invalid-feedback text-left">
                                             Entrez l'heure de début 
                                         </div>
                                     </div>
                                
-                                    <div class="form-group">
-                                    
-                                             <label> Durée estimé en heures :</label>
+                                    <div class="form-group">                                    
+                                        <label> Durée estimé en heures :</label>
                                         <input type="number" name="duree" id="duree" class="form-control input-sm" placeholder="" >
+                                        <div class="invalid-feedback text-left">
+                                            Entrez la durée de votre atelier
+                                        </div>
+                                     </div>
+                                    <div class="form-group">                                    
+                                        <label>PLaces disponible:</label>
+                                        <input type="number" name="places_disponible" id="places_disponible" class="form-control input-sm" placeholder="" >
+                                        <div class="invalid-feedback text-left">
+                                            Entrez la durée de votre atelier
+                                        </div>
+                                     </div>
+                                    <div class="form-group">                                    
+                                        <label> Place reservées :</label>
+                                        <input type="number" name="places_reservees" id="places_reservees" class="form-control input-sm" value="0" placeholder="" >
+                                        <div class="invalid-feedback text-left">
+                                            Entrez la durée de votre atelier
+                                        </div>
+                                     </div>
+                                    <div class="form-group">                                    
+                                        <label> prix :</label>
+                                        <input type="number" name="prix" id="prix" class="form-control input-sm" value="0" placeholder="" >
                                         <div class="invalid-feedback text-left">
                                             Entrez la durée de votre atelier
                                         </div>
@@ -70,18 +91,26 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                            <label>Image représentant votre atelier </label>
-                                        <input name="image" id="image" class="form-control input-sm" placeholder="" ></textarea>
+                                        <label>Image représentant votre atelier </label>
+                                        <input type="hidden" class="form-control mt-2" name="image" id="image" aria-describedby="" placeholder="http://..." required>
+                                        <input type="file" class="form-control mt-2" name="file-image" value="fileupload" id="file-image">
                                         <div class="invalid-feedback text-left">
                                             Mettre une image
                                         </div>
                                     </div>
-
+                                    <div class="form-group">
+                                        <input type="checkbox" class="form-control" name="actif" id="actif">
+                                        <label>Mettre en ligne</label>
+                                        <div class="invalid-feedback text-left">
+                                            Mettre une image
+                                        </div>
+                                    </div>id _cuisinier
+                                    <input type="text" class="form-control mt-2" name="_cuisinier" id="_cuisinier" aria-describedby=""value="<%= user._id %>" required>
+                                       
 
 
                                   
                             
-                                    <input type="hidden" name="droit" id="droit" value="0" required>
                                     <button type="submit" value="Register" class="btn btn-danger btn-block"> REGISTER</button>
 
                                 </form>
@@ -102,7 +131,7 @@
                         // Loop over them and prevent submission
                         var validation = Array.prototype.filter.call(forms, function (form) {
                             form.addEventListener('submit', function (event) {
-    
+                                $('#image').val($('#file-image').prop('files')[0].name);
                                 if (form.checkValidity() === false) {
                                     event.preventDefault();
                                     event.stopPropagation();
