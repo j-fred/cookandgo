@@ -32,7 +32,7 @@
                           <div class="jumbotron mt-5 text-center">
                             <h1 class="display-4"> <%=atelier.titre %></h1>
                             <p class="lead">
-                              <%=atelier.marque %>
+                              <%=atelier.description %>
                             </p>
                             <img class="" src="/img/<%=atelier.image %>" width="260" height="100">
                             <hr class="my-4">
@@ -42,9 +42,6 @@
                     <%  }); %>
                   </div>
                 </div>
-            
-                
-                
               </body>
               <% include ../partials/footer.ejs %>
             </html>
