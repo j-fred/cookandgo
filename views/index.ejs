@@ -1,11 +1,77 @@
 <!DOCTYPE html>
+
+
+
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  
+  <% include ./partials/head.ejs %>
+</head>
+<% include ./partials/header.ejs %>
+
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <a type="" role="button" href="#" class="btn  mt-5">Je suis un cuisinier</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container ">
+      <div class="row ">
+        <div class="col-sm-6">
+
+            <div class="jumbotron mt-5 text-center">
+                <h1 class="display-4">Atelier</h1>
+                <p class="lead">
+                     Titre, description du contenu de l’atelier,horaire de début, durée, nombre de places disponible, nombre de places réservées, prix.
+                  </p>
+                <img class="" src="/img/atelierpoulet.jpg" width="260" height="100">
+                <hr class="my-4">
+                <a class="btn btn-lg" href="#" role="button">Réservation</a>
+              </div>
+
+
+            <!--  
+        <h1>
+          <%= title %>
+        </h1>
+        <p>Welcome to
+          <%= title %>
+        </p>
+      -->
+      </div>
+
+      <div class="col-sm-6">
+
+          <div class="jumbotron mt-5 text-center">
+              <h1 class="display-4">Atelier</h1>
+              <p class="lead"> Titre, description du contenu de l’atelier,horaire de début, durée, nombre de places disponible, nombre de places réservées, prix.</p>
+              <img class="" src="/img/atelierpoulet.jpg" width="260" height="100">
+              <hr class="my-4">
+              <a class="btn btn-lg" href="#" role="button">Réservation</a>
+            </div>
+
+
+        <!--    
+      <h1>
+        <%= title %>
+      </h1>
+      <p>Welcome to
+        <%= title %>
+      </p>
+    -->
+    </div>
+      </div>
+    </div>
+
+    
+    
   </body>
+  <% include ./partials/footer.ejs %>
 </html>
