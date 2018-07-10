@@ -92,14 +92,14 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Image représentant votre atelier </label>
-                                        <input type="hidden" class="form-control mt-2" name="image" id="image"  value="<%= data.titre %>" aria-describedby="" placeholder="http://..." required>
+                                        <input type="hidden" class="form-control mt-2" name="image" id="image"  value="<%= data.image %>" aria-describedby="" placeholder="http://..." required>
                                         <input type="file" class="form-control mt-2" name="file-image" value="fileupload" id="file-image">
                                         <div class="invalid-feedback text-left">
                                             Mettre une image
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <input type="checkbox" class="form-control" name="actif" id="actif">
+                                        <input type="checkbox" class="form-control" name="actif" id="actif" <% if (data.actif=="on") { %> checked <% } %>>
                                         <label>Mettre en ligne</label>
                                         <div class="invalid-feedback text-left">
                                             Mettre une image
@@ -131,7 +131,9 @@
                         // Loop over them and prevent submission
                         var validation = Array.prototype.filter.call(forms, function (form) {
                             form.addEventListener('submit', function (event) {
-                                $('#image').val($('#file-image').prop('files')[0].name);
+                                if($('#file-image').prop('files')[0].name != undefined){
+                                    $('#image').val($('#file-image').prop('files')[0].name);
+                                }
                                 if (form.checkValidity() === false) {
                                     event.preventDefault();
                                     event.stopPropagation();

@@ -27,7 +27,7 @@ module.exports = {
             res.status(403).send("accès refusé");
         }
     },
-    verifAdmin: function (req, res, next) {
+    isAdmin: function (req, res, next) {
         jwt.verify(req.session.token, SECRET, function (err, data) {
             if (err) {
                 res.status(403).send("Accès refusé");
@@ -37,6 +37,23 @@ module.exports = {
                     req.body.role = data.role;
                     next();
                 } else {
+                    res.status(403).send("Vous n'avez pas les droits necessaire pour allez ici");
+                }
+            }
+        });
+    },
+    isParticulier: function (req, res, next) {
+        jwt.verify(req.session.token, SECRET, function (err, data) {
+            if (err) {
+                res.redirect("/particuliers/auth");
+            } else {
+                console.log("role =",req.session.user.role);
+                if (data.role === 1) {
+                   // console.log("droit ok");
+                    req.body.role = data.role;
+                    next();
+                } else {
+                    console.log("role =",req.session.user.role);
                     res.status(403).send("Vous n'avez pas les droits necessaire pour allez ici");
                 }
             }
