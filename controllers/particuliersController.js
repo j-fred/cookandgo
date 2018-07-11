@@ -27,10 +27,11 @@ module.exports = {
                             nom: data.nom,
                             prenom: data.prenom,
                             telephone: data.telephone,
-                            email: data.email
+                            email: data.email,
+                            role: data.role
                         };
 
-                        console.log("session.user ok = > ",req.session.user);
+                        console.log("session.part ok = > ",req.session.user);
                         // res.render("ateliers/admin/liste", {
                         //     token: token
                         // });
