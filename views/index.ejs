@@ -5,7 +5,7 @@
   
   <body class="bg-orange">
         <% include ./partials/header.ejs %>
-    <div class="container-fluid ">
+    <div class="container-fluid px-0">
   
     <div class="container bg-light border-top-red mb-5 pt-5 pb-5 mt-3">
     <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
@@ -16,9 +16,11 @@
           </div>
           <div class="text-center">
                 <h1 >Bienvenue !</h1>
-                <p>Nos Ateliers Cuisines</p>
-      
-                <a  role="button" href="/ateliers" class="btn btn mt-3 text-uppercase">
+                <p class="lead py-2">Nos Ateliers Cuisines</p>
+      <p class="px-3 py-3"> Plus qu’un cours de cuisine, c’est dans un espace convivial, chaleureux et tout équipé qui vous attend.
+
+            Vous serez guidés avec pédagogie et générosité par des professionnels, heureux de vous faire partager leur métier, leur passion et leur savoir faire afin de vous faire découvrir les trucs et astuces pour cuisiner comme un vrai chef, et surtout avoir la satisfaction de l’avoir fait « soi-même ». </p>
+                <a  role="button" href="/ateliers" class="btn btn mt-2 text-uppercase">
                   <i class="fas fa-utensils mr-3"></i>  Decouvrir nos ateliers  </a>
                   <hr>
               </div>
@@ -26,9 +28,10 @@
 
           <!-- NE PAS AJOUTER DE type="button" sur un a quand il y a bootstrap de charger -->
           <!-- Il génère une difference entre chrome et firefox -->
-          <p class="lead"> Vous voulez proposez votre propre atelier et vous êtes cuisinier. Cliquez sur le bouton ci-dessous </p>
-          <a href="/cuisiniers/auth" class="btn btn-danger mt-3 text-uppercase">
-            <i class="fas fa-utensils mr-3"></i> Créer mon atelier</a>
+          <div class=" alert alert-success">
+          <p class="lead mt-5 p-4"> Vous voulez proposez votre propre atelier et vous êtes cuisinier. Cliquez sur le bouton ci-dessous 
+          <a href="/cuisiniers/auth" class="btn btn-outline-danger mt-2 text-uppercase mr-0">
+            <i class="fas fa-utensils mr-3"></i> Créer mon atelier</a> </p></div>
 
          
 

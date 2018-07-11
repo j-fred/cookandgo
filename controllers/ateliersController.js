@@ -107,7 +107,7 @@ module.exports = {
     save: function(req, res){
         var atelier = new Atelier(req.body);
 
-        atelier.save(function(err){
+        atelier.save(function(err,data){
             if(err){
                 console.log(err);
                 res.render("../views/ateliers/admin/create/");
