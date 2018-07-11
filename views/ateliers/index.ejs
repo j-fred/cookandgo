@@ -1,56 +1,52 @@
+<% include ../partials/head.ejs %>
+
+  <body>
+    <% include ../partials/header.ejs %>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <a type="" role="button" href="/cuisiniers/auth" class="btn  mt-5">Je suis un cuisinier</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+          <div class="row ">
+            <% datas.forEach(function(atelier){ %>
+              <div class="col-sm-12 col-md-6">   
+                    
+                  <div class="jumbotron mt-5 text-center">
+                     
+                    <div class="row mb-3"> <div class="col font-weight-bold"> Disponible le : <%=atelier.date %></div>
+                    <div class="col">à <%=atelier.horaire %>
+                  
+                  </div>
+                  </div>
+                    <h3 class="text-uppercase"> <%=atelier.titre %></h3></small>
+                    <img class="mb-3" src="/img/<%=atelier.image %>" width="460">      
+                    <p >
+                      <%=atelier.description %>
+                    </p>
+                  
+                    <hr class="my-4">     
+                    <span class=""> <%=atelier.prix %> € </span>
+                    <% if(user.role!=2){   %> 
+                        <% if(atelier.places_disponible > atelier.places_reservees){   %> 
+                          <form role="form" action="/ateliers/reservation/<%=atelier._id %>" method="POST" class="needs-validation" >   
+                            <button type="submit" value="Register" class="btn btn-lg"> Réservation</button>  
+                          <!-- <a class="btn btn-lg" href="/ateliers/reservation/<%=atelier._id %>" role="button">Réservation</a> -->
+                          </form>
+                        <% } else { %>
+                          <div class="alert alert-secondary" role="alert">COMPLET</div>
+                        <% } %>
+                      <% } %>
+                  </div>
+              </div>
+            <%  }); %>
+          </div>
+        </div>
 
             <!--******************************************************-->
-
-            <!-- PAGE LISTE LES ATELIERS ACTIFS-->
-
-            <!--******************************************************-->
-            <!DOCTYPE html>
-            <html>
-            
-            <head>
-              <title>
-                <%= title %>
-              </title>
-              
-              <% include ../partials/head.ejs %>
-            </head>
-            <% include ../partials/header.ejs %>
-            
-              <body>
-                <div class="container">
-                  <div class="row">
-                    <div class="col">
-                      <a type="" role="button" href="/cuisiniers/auth" class="btn  mt-5">Je suis un cuisinier</a>
-                    </div>
-                  </div>
-                </div>
-            
-                <div class="container">
-                  <div class="row ">
-                    <% datas.forEach(function(atelier){ %>
-                      <div class="col-sm-12 col-md-6">            
-                          <div class="jumbotron mt-5 text-center">
-                            <h1 class="display-4"> <%=atelier.titre %></h1>
-                            <p class="lead">
-                              <%=atelier.description %>
-                            </p>
-                            <img class="" src="/img/<%=atelier.image %>" width="260" height="100">
-                            <hr class="my-4"> 
-                              <% if(user.role!=2){   %> 
-                                <% if(atelier.places_disponible > atelier.places_reservees){   %> 
-                                  <form role="form" action="/ateliers/reservation/<%=atelier._id %>" method="POST" class="needs-validation" >   
-                                    <button type="submit" value="Register" class="btn btn-lg"> Réservation</button>  
-                                  <!-- <a class="btn btn-lg" href="/ateliers/reservation/<%=atelier._id %>" role="button">Réservation</a> -->
-                                  </form>
-                                <% } else { %>
-                                  <div class="alert alert-secondary" role="alert">COMPLET</div>
-                                <% } %>
-                              <% } %>
-                          </div>
-                      </div>
-                    <%  }); %>
-                  </div>
-                </div>
-              </body>
+           
               <% include ../partials/footer.ejs %>
-            </html>
+            
