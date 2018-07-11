@@ -50,8 +50,8 @@ img {
 
 /*FOOTER*/
 
-#footer {
-  background-color: #d05c62;
+#footer{
+  background-color: #a5494d;
 }
 
 /*Police de la charte graphique*/
@@ -142,4 +142,18 @@ and also iPads specifically.
     color: #000;
     font-weight: bold;
   }
+.h-jumbotron{
+
+  height: 1000px;
+}
+
+.atelier-img {
+  width: 460px;
+  height: 300px;
+  overflow: hidden;
+}
+.h-block {
+  width: 460px;
+  height: 220px;
+  overflow: hidden;
 }

@@ -117,15 +117,15 @@ module.exports = {
     save: function(req, res){
             var atelier = new Atelier(req.body);
 
-            atelier.save(function(err){
-                if(err){
-                    console.log(err);
-                    res.render("../views/ateliers/admin/create/");
-                } else{
-                    console.log("creation OK");
-                    res.redirect('/ateliers/admin/'+data._id);
-                } 
-            })
+        atelier.save(function(err,data){
+            if(err){
+                console.log(err);
+                res.render("../views/ateliers/admin/create/");
+            } else{
+                console.log("creation OK");
+                res.redirect('/ateliers/admin/'+data._id);
+            } 
+        });
     },
 
     //edition de la donnée par son id

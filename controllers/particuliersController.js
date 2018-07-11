@@ -12,11 +12,12 @@ module.exports = {
         User.findOne({
             'email': req.body.logemail
         }).exec(function (err, data) {
-            bcrypt.compare(req.body.logpassword, data.password, function (err, result) {
-                if (result === true) {
+         
                     if (err) {
                         console.log('Error : ', err);
                     } else {
+                        bcrypt.compare(req.body.logpassword, data.password, function (err, result) {
+                            if (result === true) {
                         //console.log("data part  = > ",data);
                         var donnees = { email: data.email, role: data.role }
                         // then return a token, secret key should be an env variable
@@ -36,11 +37,11 @@ module.exports = {
                         //     token: token
                         // });
                         res.redirect('/ateliers');
-                    }
                 } else {
                   res.redirect('/cuisiniers/auth');
                 }
-            })           
+            })  
+        }         
         });
     },
     //Liste les données

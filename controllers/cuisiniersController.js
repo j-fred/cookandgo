@@ -12,36 +12,37 @@ module.exports = {
     login: function (req, res) {        
         User.findOne({
             'email': req.body.logemail
-        }).exec(function (err, data) {
-            bcrypt.compare(req.body.logpassword, data.password, function (err, result) {
-                if (result === true) {
-                    if (err) {
-                        console.log('Error : ', err);
-                    } else {
-                       // console.log("data ok = > ",data);
-                        var donnees = { email: data.email, role: data.role }
-                        // then return a token, secret key should be an env variable
-                        const token = jwt.sign(donnees, SECRET, { expiresIn: '24h' });                        
-                        req.session.token = token;
-                        req.session.user = { 
-                            _id: data._id,
-                            nom: data.nom,
-                            prenom: data.prenom,
-                            specialite: data.specialite,
-                            email: data.email,
-                            role: data.role
-                        };
-
-                        console.log("session.cuis ok = > ",req.session.user);
-                        // res.render("ateliers/admin/liste", {
-                        //     token: token
-                        // });
-                        res.redirect('/ateliers/admin/'+data._id);
-                    }
+        }).exec(function (err, data) {           
+                if (err) {
+                    console.log('Error : ', err);
                 } else {
-                  res.redirect('/cuisiniers/auth');
-                }
-            })           
+                    bcrypt.compare(req.body.logpassword, data.password, function (err, result) {
+                        if (result === true) {
+                        // console.log("data ok = > ",data);
+                            var donnees = { email: data.email, role: data.role }
+                            // then return a token, secret key should be an env variable
+                            const token = jwt.sign(donnees, SECRET, { expiresIn: '24h' });                        
+                            req.session.token = token;
+                            req.session.user = { 
+                                _id: data._id,
+                                nom: data.nom,
+                                prenom: data.prenom,
+                                specialite: data.specialite,
+                                email: data.email,
+                                role: data.role
+                            };
+
+                            console.log("session.cuis ok = > ",req.session.user);
+                            // res.render("ateliers/admin/liste", {
+                            //     token: token
+                            // });
+                            res.redirect('/ateliers/admin/'+data._id);
+                        } else {
+                            res.redirect('/cuisiniers/auth');
+                        }
+                })
+              
+            }           
         });
     },
     //Liste les données
