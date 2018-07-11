@@ -27,7 +27,6 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage });
 //----------------------------------------------------------------------------
 
-
 //recuperer les datas
 router.get("/", data.listaccueil);
 
@@ -35,19 +34,25 @@ router.get("/", data.listaccueil);
 router.get("/show/:id", data.show);
 
 //cree un data
-router.get("/admin/create", jwtU.verifAdmin, data.create);
+router.get("/admin/create", jwtU.isAdmin, data.create);
 
 //sauvegarder un data. /!\ cest un POST 
-router.post("/admin/save", jwtU.verifAdmin,upload.single('file-image'), data.save);
+router.post("/admin/save", jwtU.isAdmin,upload.single('file-image'), data.save);
 
 //editer un data
-router.get("/admin/edit/:id", jwtU.verifAdmin, data.edit);
+router.get("/admin/edit/:id", jwtU.isAdmin, data.edit);
 
 //edit update.  /!\ cest un POST 
-router.post("/admin/update/:id", jwtU.verifAdmin, upload.single('file-image'), data.update);
+router.post("/admin/update/:id", jwtU.isAdmin, upload.single('file-image'), data.update);
 
 //recuperer les datas
-router.get("/admin/:id", jwtU.verifAdmin,  data.list);
+router.get("/admin/:id", jwtU.isAdmin,  data.list);
+
+//recuperer les datas
+router.get("/reservation",  data.reservation);
+
+//recuperer les datas
+router.post("/reservation/:id", jwtU.isParticulier,  data.push);
 
 
 //export du module router
