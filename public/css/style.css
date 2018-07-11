@@ -1,77 +1,145 @@
-
 a {
   color: #00B7FF;
 }
 
-.bg-orange{
-
+.bg-orange {
   background-color: #d05c62;
 }
 
-
-
-
-
-
-header .navbar{
+header .navbar {
   background-image: url('/img/food.jpg');
-  background-size: 100%;
+  background-size: cover;
   background-repeat: no-repeat;
   min-height: 200px;
 }
 
-span{
+span {
   color: #d05c62;
 }
 
-h1{
+h1 {
   padding-top: 17px;
   text-transform: uppercase;
-  
 }
 
-.navbar .container .navbar-brand{
-  
+.navbar .container .navbar-brand {
   justify-content: center;
 }
 
-
-img{
+img {
   border-radius: 4px;
 }
 
-.navbar-brand{
+.navbar-brand {
   display: inline-flex;
 }
 
 /*BOUTON*/
-.btn{
+
+.btn {
   background-color: #d05c62;
   text-decoration: none;
   color: white;
 }
 
 /*Espacement entre les lettres*/
-.premier{
+
+.premier {
   letter-spacing: 1px;
 }
 
-
-
 /*FOOTER*/
 
-#footer{
+#footer {
   background-color: #d05c62;
 }
 
-
 /*Police de la charte graphique*/
-body{
+
+body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
 h1 {
   font-family: 'Roboto', sans-serif;
-  
 }
 
+/** tableau responsive **/
 
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+/* Zebra striping */
+
+tr:nth-of-type(odd) {
+  background: #eee;
+}
+
+th {
+  background: #212529;
+  color: white;
+  font-weight: bold;
+}
+
+td,
+th {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: left;
+  font-size: 18px;
+}
+
+/* 
+Max width before this PARTICULAR table gets nasty
+This query will take effect for any screen smaller than 760px
+and also iPads specifically.
+*/
+
+@media only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px) {
+  table {
+    width: 100%;
+  }
+  /* Force table to not be like tables anymore */
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+  /* Hide table headers (but not display: none;, for accessibility) */
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  tr {
+    border: 1px solid #ccc;
+  }
+  td {
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+  }
+  td:before {
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    /* Label the data */
+    content: attr(data-column);
+    color: #000;
+    font-weight: bold;
+  }
+}

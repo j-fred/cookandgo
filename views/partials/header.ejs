@@ -1,7 +1,6 @@
 <!-- views/partials/header.ejs -->
 <!-- Just an image -->
 <header>
-
     <nav class="navbar navbar-light col-sm-12">
         <div class="container">
             <a class="navbar-brand" href="/">
@@ -11,13 +10,13 @@
             <% if (user.role == 2){ %> 
                 <div class="card bg-dark text-white text-center p-3" style="width: 18rem;">
                     <h5><small>Chef <%= user.nom %> </small></h5>
-                    <a href="/ateliers/admin/<%= user._id %>" class="p-1 btn-success" >Mon compte</a>                
+                    <a href="/ateliers/admin/<%= user._id %>" class="p-1 btn-success" >Mon compte</a><br>              
                     <a href="/cuisiniers/logout" class="p-1 btn-danger" >Se déconnecter</a>  
                 </div> 
             <% } else if(user.role == 1) { %>
                 <div class="card bg-dark text-white text-center p-3" style="width: 18rem;">
                     <h5><%= user.prenom %> <%= user.nom %> </h5>
-                    <a href="/ateliers/admin/<%= user._id %>" class="p-1 btn-success" >Mon compte</a>  <br>              
+                    <a href="/ateliers/admin/<%= user._id %>" class="p-1 btn-success" >Mon compte</a><br>              
                     <a href="/particuliers/logout" class="p-1 btn-danger" >Se déconnecter</a>
                 </div> 
             <% } %>
