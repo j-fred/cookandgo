@@ -15,7 +15,10 @@ module.exports = {
                 _id:" ",
                 nom:" ",
                 prenom: " ",
-                email: " "
+                email: " ",
+                telephone: " ",
+                specialite: " ",
+                role: " "
             };
         }
         Atelier.find({actif:{ $eq: "on" }}).exec(function(err, datas){
@@ -36,15 +39,22 @@ module.exports = {
                 _id:" ",
                 nom:" ",
                 prenom: " ",
-                email: " "
+                email: " ",
+                telephone: " ",
+                specialite: " ",
+                role: " "
             };
         }
         Atelier.find({actif:{ $eq: "on" }}).populate({path:"_cuisinier", populate: { path:"users"}}).exec(function(err, datas){
             if(err){
                 console.log('Error : ', err);
             }else{
-                res.render("../views/ateliers/index",{ title: 'Cook and Go', datas:datas,
-                user:req.session.user  } );
+                console.log("user in list accueil",req.session.user);
+                res.render("../views/ateliers/index",{ 
+                    title: 'Cook and Go', 
+                    datas:datas,
+                    user:req.session.user  
+                } );
             } 
         });
     },
@@ -93,7 +103,7 @@ module.exports = {
                 });
             } 
         });
-       console.log("ateliers/admin/create")   ;
+      // console.log("ateliers/admin/create")   ;
         // res.render("ateliers/admin/create",{ uid:req.params.id});
         // res.redirect("/ateliers/admin/create/"+req.params.id);
         // res.json({
@@ -171,14 +181,14 @@ module.exports = {
     //gestion de l'edition de la donnée
     push : function(req, res){ 
         Atelier.findOne({_id:req.params.id}).exec(function(err, data){
-                var reservees = data._particuliers.length;
+                var nb_particuliers = data._particuliers.length;
       //  Atelier.findByIdAndUpdate(req.params.id,{ $set :{nom: req.body.nom, prix: req.body.prix}, "$push": { dim:  req.body._id }  },{new: true}, function (err, data){
-            Atelier.findByIdAndUpdate(data.id,{ $set :{places_reservees:reservees+1}, "$push": { _particuliers: req.session.user._id }  },{new: true}, function (err, data){
+            Atelier.findByIdAndUpdate(data.id,{ $set :{places_reservees:nb_particuliers+1}, "$push": { _particuliers: req.session.user._id }  },{new: true}, function (err, data){
                 if (err){
                     console.log(err);
                     res.render("ateliers/index",{data:req.body} );
                 } 
-                console.log("push ok ==", data);
+               // console.log("push ok ==", data);
                 res.redirect("/ateliers/reservation");
             }); 
         });

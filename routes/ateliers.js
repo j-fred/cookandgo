@@ -49,7 +49,7 @@ router.post("/admin/update/:id", jwtU.isAdmin, upload.single('file-image'), data
 router.get("/admin/:id", jwtU.isAdmin,  data.list);
 
 //recuperer les datas
-router.get("/reservation",  data.reservation);
+router.get("/reservation", data.reservation);
 
 //recuperer les datas
 router.post("/reservation/:id", jwtU.isParticulier,  data.push);
