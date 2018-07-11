@@ -1,7 +1,37 @@
+<% include ../partials/head.ejs %>
 
-            <!--******************************************************-->
+  <body>
+    <% include ../partials/header.ejs %>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <a type="" role="button" href="/cuisiniers/auth" class="btn  mt-5">Je suis un cuisinier</a>
+          </div>
+        </div>
+      </div>
 
-            <!-- PAGE LISTE LES ATELIERS ACTIFS-->
+      <div class="container">
+        <div class="row ">
+          <% datas.forEach(function(atelier){ %>
+            <div class="col-sm-12 col-md-6">
+              <div class="jumbotron mt-5 text-center">
+                <h1 class="display-4">
+                  <%=atelier.titre %>
+                </h1>
+                <p class="lead">
+                  <%=atelier.description %>
+                </p>
+                <img class="" src="/img/<%=atelier.image %>" width="260" height="100">
+                <hr class="my-4">
+                <form role="form" action="/ateliers/reservation/<%=atelier._id %>" method="POST" class="needs-validation">
+                  <button type="submit" value="Register" class="btn btn-lg"> Réservation</button>
+                  <!-- <a class="btn btn-lg" href="/ateliers/reservation/<%=atelier._id %>" role="button">Réservation</a> -->
+                </form>
+              </div>
+            </div>
+            <%  }); %>
+        </div>
+      </div>
 
             <!--******************************************************-->
             <!DOCTYPE html>
