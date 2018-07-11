@@ -17,7 +17,7 @@ header .navbar{
   background-image: url('/img/food.jpg');
   background-size: 100%;
   background-repeat: no-repeat;
-  height: 200px;
+  min-height: 200px;
 }
 
 span{
@@ -25,7 +25,7 @@ span{
 }
 
 h1{
-  padding-top: 30px;
+  padding-top: 17px;
   text-transform: uppercase;
   
 }
