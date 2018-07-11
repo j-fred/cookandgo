@@ -32,11 +32,23 @@
                
                     <hr class="my-4">     
                     <span class="badge badge-success p-3 text-uppercase mb-2"> Prix : <%=atelier.prix %> € </span>
-                   
-                    <form role="form" action="/ateliers/reservation/<%=atelier._id %>" method="POST" class="needs-validation" >   
-                      <button type="submit" value="Register" class="btn btn-lg"> Réservation</button>  
-                     <!-- <a class="btn btn-lg" href="/ateliers/reservation/<%=atelier._id %>" role="button">Réservation</a> -->
-                    </form>
+                    <% if(user.role!=2){   %> 
+                        <% if(atelier.places_disponible > atelier.places_reservees){   %> 
+                          <form role="form" action="/ateliers/reservation/<%=atelier._id %>" method="POST" class="needs-validation" >   
+                            <button type="submit" value="Register" class="btn btn-lg"> Réservation</button>  
+                          <!-- <a class="btn btn-lg" href="/ateliers/reservation/<%=atelier._id %>" role="button">Réservation</a> -->
+                          </form>
+                          <span>
+                            <% if(atelier.places_disponible<2){ %>
+                            <%=atelier.places_disponible %> place disponible
+                            <% }else{ %>
+                            <%=atelier.places_disponible %> places disponible
+                            <% } %>
+                          </span>
+                        <% } else { %>
+                          <div class="alert alert-secondary" role="alert">COMPLET</div>
+                        <% } %>
+                      <% } %>
                   </div>
               </div>
             <%  }); %>
