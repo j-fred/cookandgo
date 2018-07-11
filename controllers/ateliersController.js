@@ -9,6 +9,15 @@ var SECRET = process.env.SECRETKEY;//var avec la base mongo 'simplon_reunion_4p_
 module.exports = {
     //Liste les données dans la page index
     listindex : function(req, res) {
+        if(!req.session.user){
+            // initialisation des données de sessions
+            req.session.user = { 
+                _id:" ",
+                nom:" ",
+                prenom: " ",
+                email: " "
+            };
+        }
         Atelier.find({actif:{ $eq: "on" }}).exec(function(err, datas){
             if(err){
                 console.log('Error : ', err);
@@ -21,6 +30,15 @@ module.exports = {
 
     //Liste les données dans la page atelier
     listaccueil : function(req, res) {
+        if(!req.session.user){
+            // initialisation des données de sessions
+            req.session.user = { 
+                _id:" ",
+                nom:" ",
+                prenom: " ",
+                email: " "
+            };
+        }
         Atelier.find({actif:{ $eq: "on" }}).exec(function(err, datas){
             if(err){
                 console.log('Error : ', err);
