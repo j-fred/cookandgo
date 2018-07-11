@@ -153,9 +153,9 @@ module.exports = {
     //gestion de l'edition de la donnée
     push : function(req, res){ 
         Atelier.findOne({_id:req.params.id}).exec(function(err, data){
-                var reservees = data._particuliers.length;
+                var nb_particuliers = data._particuliers.length;
       //  Atelier.findByIdAndUpdate(req.params.id,{ $set :{nom: req.body.nom, prix: req.body.prix}, "$push": { dim:  req.body._id }  },{new: true}, function (err, data){
-            Atelier.findByIdAndUpdate(data.id,{ $set :{places_reservees:reservees+1}, "$push": { _particuliers: req.session.user._id }  },{new: true}, function (err, data){
+            Atelier.findByIdAndUpdate(data.id,{ $set :{places_reservees:nb_particuliers+1}, "$push": { _particuliers: req.session.user._id }  },{new: true}, function (err, data){
                 if (err){
                     console.log(err);
                     res.render("ateliers/index",{data:req.body} );

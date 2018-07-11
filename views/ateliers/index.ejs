@@ -35,11 +35,13 @@
                               <%=atelier.description %>
                             </p>
                             <img class="" src="/img/<%=atelier.image %>" width="260" height="100">
-                            <hr class="my-4">     
-                            <form role="form" action="/ateliers/reservation/<%=atelier._id %>" method="POST" class="needs-validation" >   
-                              <button type="submit" value="Register" class="btn btn-lg"> Réservation</button>  
-                             <!-- <a class="btn btn-lg" href="/ateliers/reservation/<%=atelier._id %>" role="button">Réservation</a> -->
-                            </form>
+                            <hr class="my-4"> 
+                            <% if(atelier.places_disponible <atelier.places_disponible){   %> 
+                              <form role="form" action="/ateliers/reservation/<%=atelier._id %>" method="POST" class="needs-validation" >   
+                                <button type="submit" value="Register" class="btn btn-lg"> Réservation</button>  
+                              <!-- <a class="btn btn-lg" href="/ateliers/reservation/<%=atelier._id %>" role="button">Réservation</a> -->
+                              </form>
+                            <% } %>
                           </div>
                       </div>
                     <%  }); %>
