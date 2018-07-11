@@ -22,14 +22,17 @@
                   
                   </div>
                   </div>
+                  <p class="lead"> Atelier proposé par <span><%=atelier._cuisinier.nom %> <%=atelier._cuisinier.prenom %>   </span></p>
                     <h3 class="text-uppercase"> <%=atelier.titre %></h3></small>
-                    <img class="mb-3" src="/img/<%=atelier.image %>" width="460">      
+                    <img class="mb-3" src="/img/<%=atelier.image %>" width="460">  
+                    <p class="lead"> Durée : <%=atelier.duree%> heures </p>  
                     <p >
                       <%=atelier.description %>
                     </p>
-                  
+               
                     <hr class="my-4">     
-                    <span class=""> <%=atelier.prix %> € </span>
+                    <span class="badge badge-success p-3 text-uppercase mb-2"> Prix : <%=atelier.prix %> € </span>
+                   
                     <form role="form" action="/ateliers/reservation/<%=atelier._id %>" method="POST" class="needs-validation" >   
                       <button type="submit" value="Register" class="btn btn-lg"> Réservation</button>  
                      <!-- <a class="btn btn-lg" href="/ateliers/reservation/<%=atelier._id %>" role="button">Réservation</a> -->
