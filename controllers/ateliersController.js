@@ -45,7 +45,7 @@ module.exports = {
                 role: " "
             };
         }
-        Atelier.find({actif:{ $eq: "on" }}).exec(function(err, datas){
+        Atelier.find({actif:{ $eq: "on" }}).populate({path:"_cuisinier", populate: { path:"users"}}).exec(function(err, datas){
             if(err){
                 console.log('Error : ', err);
             }else{
