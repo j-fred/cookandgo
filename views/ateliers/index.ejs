@@ -5,7 +5,9 @@
       <div class="container">
         <div class="row">
           <div class="col">
-            <a type="" role="button" href="/cuisiniers/auth" class="btn  mt-5">Je suis un cuisinier</a>
+            <a href="/cuisiniers/auth" class="btn btn-danger mt-3 text-uppercase">
+                <i class="fas fa-utensils mr-3"></i> Je suis cuisinier 
+            </a>
           </div>
         </div>
       </div>
@@ -18,13 +20,11 @@
                   <div class="jumbotron mt-5 text-center">
                      
                     <div class="row mb-3"> <div class="col font-weight-bold"> Disponible le : <%=atelier.date %></div>
-                    <div class="col">à <%=atelier.horaire %>
-                  
-                  </div>
+                    <div class="col text-right">à <%=atelier.horaire %></div>
                   </div>
                   <p class="lead"> Atelier proposé par <span><%=atelier._cuisinier.nom %> <%=atelier._cuisinier.prenom %>   </span></p>
-                    <h3 class="text-uppercase"> <%=atelier.titre %></h3></small>
-                    <img class="mb-3" src="/img/<%=atelier.image %>" width="460">  
+                    <h3 class="text-uppercase"> <%=atelier.titre %></h3>
+                    <img class="mb-3 img-fluid" src="/img/<%=atelier.image %>">  
                     <p class="lead"> Durée : <%=atelier.duree%> heures </p>  
                     <p >
                       <%=atelier.description %>
@@ -38,7 +38,7 @@
                             <button type="submit" value="Register" class="btn btn-lg"> Réservation</button>  
                           <!-- <a class="btn btn-lg" href="/ateliers/reservation/<%=atelier._id %>" role="button">Réservation</a> -->
                           </form>
-                          <span>
+                          <span class="d-block m-3">
                             <% if(atelier.places_disponible<2){ %>
                             <%=atelier.places_disponible %> place disponible
                             <% }else{ %>
