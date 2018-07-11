@@ -6,24 +6,26 @@
         <div class="container">
             <a class="navbar-brand" href="/">
                 <img src="/img/logo.png" class="logo" width="80" height="80" class="d-inline-block align-top" alt="">
-                <h1 class="premier">Cook <span>& Go</span>(<%= user.role %>)</h1>
+                <h1 class="premier">Cook <span>& Go</span></h1>
             </a>
             <% if (user.role == 2){ %> 
                 <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5>Bonjour, <%= user.prenom %> <%= user.nom %> </h5>
-                        <a href="/ateliers/admin/<%= user._id %>" class="btn btn-success" >Mon compte</a>                
-                        <a href="/cuisiniers/logout" class="btn btn-danger" >Se déconnecter</a>                
+                    <div class="card-body text-center">
+                        <h5><small>Chef <%= user.nom %> </small></h5>
+                        <a href="/ateliers/admin/<%= user._id %>" class="p-1 btn-success" >Mon compte</a>                
+                        <a href="/cuisiniers/logout" class="p-1 btn-danger" >Se déconnecter</a>                
                     </div>
                 </div> 
             <% } else if(user.role == 1) { %>
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5>Bonjour, <%= user.prenom %> <%= user.nom %> </h5>
-                        <a href="/ateliers/admin/<%= user._id %>" class="btn btn-success" >Mon compte</a>                
-                        <a href="/particuliers/logout" class="btn btn-danger" >Se déconnecter</a>                
-                    </div>
+                <div class="card bg-dark text-white text-center p-3" style="width: 18rem;">
+                        <h5><%= user.prenom %> <%= user.nom %> </h5>
+                        <a href="/ateliers/admin/<%= user._id %>" class="p-1 btn-success" >Mon compte</a>  <br>              
+                        <a href="/particuliers/logout" class="p-1 btn-danger" >Se déconnecter</a>
                 </div> 
+            <% }else{ %>
+                <a href="/cuisiniers/auth" class="btn btn-danger mt-3 text-uppercase">
+                    <i class="fas fa-utensils mr-3"></i> Je suis cuisinier 
+                </a>
             <% } %>
         </div>
     </nav>
