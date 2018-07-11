@@ -6,14 +6,22 @@
         <div class="container">
             <a class="navbar-brand" href="/">
                 <img src="/img/logo.png" class="logo" width="80" height="80" class="d-inline-block align-top" alt="">
-                <h1 class="premier">Cook <span>& Go</span></h1>
+                <h1 class="premier">Cook <span>& Go</span>(<%= user.role %>)</h1>
             </a>
-            <% if (user._id!=" "){ %> 
+            <% if (user.role == 2){ %> 
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5>Bonjour, <%= user.prenom %> <%= user.nom %> </h5>
                         <a href="/ateliers/admin/<%= user._id %>" class="btn btn-success" >Mon compte</a>                
                         <a href="/cuisiniers/logout" class="btn btn-danger" >Se déconnecter</a>                
+                    </div>
+                </div> 
+            <% } else if(user.role == 1) { %>
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5>Bonjour, <%= user.prenom %> <%= user.nom %> </h5>
+                        <a href="/ateliers/admin/<%= user._id %>" class="btn btn-success" >Mon compte</a>                
+                        <a href="/particuliers/logout" class="btn btn-danger" >Se déconnecter</a>                
                     </div>
                 </div> 
             <% } %>
