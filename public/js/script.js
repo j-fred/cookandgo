@@ -1,39 +1,53 @@
 function formatDate(d) {
     var date = new Date(d);
-
     if (isNaN(date.getTime())) {
         return d;
     } else {
-        var month = new Array();
-        month[0] = "Janvier";
-        month[1] = "Fevrier";
-        month[2] = "Mars";
-        month[3] = "Avril";
-        month[4] = "Mai";
-        month[5] = "Juin";
-        month[6] = "Juillet";
-        month[7] = "Aout";
-        month[8] = "Septembre";
-        month[9] = "Octobre";
-        month[10] = "Novembre";
-        month[11] = "Décembre";
-
-        day = date.getDate();
-
-        if (day < 10) {
-            day = "0" + day;
+        // Creation d'un tableau des mois
+        var mois = ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+        // récupération du jour
+        jour = date.getDate();
+        // si le jour inferieur à 10 , on ajoute un 0 devant
+        if (jour < 10) {
+            jour = "0" + jour;
         }
-        return day + " " + month[date.getMonth()] + " " + date.getFullYear();
+        // on renvoi la date au format souhaité => ex: "25 Aout 2018"
+        return jour + " " + mois[date.getMonth()] + " " + date.getFullYear();
     }
+}
 
+function convertMinsToHrsMins(mins) {
+    if (mins > 59) {
+        let h = Math.floor(mins / 60);
+        let m = mins % 60;
+        h = h < 10 ? '0' + h : h;
+        m = m < 10 ? '0' + m : m;
+        return `${h}H${m}`;
+    } else {
+        return `${mins} Min`;
+    }
 }
 
 $(function () {
-    var dateTransform ="";
-    $("myDate").each( function (e) {  
-        console.log($(this).text());      
+    $('.h_var').parents('.h-jumbotron').css('height', '990px');
+    var dateTransform = "";
+    /** Sur chaque element avec la class myDate, je recupère son contenu 
+     * et je le traite avec la fonction formatDate
+     * puis je remplace l'ancienne valeur par la nouvelle 
+    */
+    $(".myDate").each(function (e) {
+        // console.log($(this).text());      
         dateTransform = formatDate($(this).text());
         $(this).text(dateTransform);
-        console.log(dateTransform);   
+        // console.log(dateTransform);   
+    });
+    /**
+     * fonction qui transforme les mins en heure si > 59 min
+     */
+    $(".maDuree").each(function (e) {
+        // console.log($(this).text());      
+        timeTransform = convertMinsToHrsMins($(this).text());
+        $(this).text(timeTransform);
+        // console.log(dateTransform);   
     });
 });

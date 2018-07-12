@@ -43,14 +43,14 @@
                                     </div>
                                     <div class="form-group">                                    
                                         <label> Durée estimé en heures :</label>
-                                        <input type="number" name="duree" id="duree" class="form-control input-sm" placeholder="" >
+                                        <input type="number" name="duree" id="duree" class="form-control input-sm" placeholder="" required>
                                         <div class="invalid-feedback text-left">
                                             Entrez la durée de votre atelier
                                         </div>
                                     </div>
                                     <div class="form-group">                                    
                                         <label>Places disponible:</label>
-                                        <input type="number" name="places_disponible" id="places_disponible" min="2"  class="form-control input-sm" placeholder="" >
+                                        <input type="number" name="places_disponible" id="places_disponible" min="2"  class="form-control input-sm" placeholder="" required>
                                         <div class="invalid-feedback text-left">
                                             Entrez le nombre de places disponible pour votre atelier
                                         </div>
@@ -63,7 +63,7 @@
                                     </div>
                                     <div class="form-group">                                    
                                         <label>Prix</label>
-                                        <input type="number" name="prix" id="prix" class="form-control input-sm"  min="20" value="30" placeholder="" >
+                                        <input type="number" name="prix" id="prix" class="form-control input-sm"  min="20" value="30" placeholder="" required>
                                         <div class="invalid-feedback text-left">
                                             Entrez la durée de votre atelier
                                         </div>
@@ -106,11 +106,12 @@
                         var forms = document.getElementsByClassName('needs-validation');
                         // Loop over them and prevent submission
                         var validation = Array.prototype.filter.call(forms, function (form) {
-                            form.addEventListener('submit', function (event) {
-                                $('#image').val($('#file-image').prop('files')[0].name);
+                            form.addEventListener('submit', function (event) {                               
                                 if (form.checkValidity() === false) {
                                     event.preventDefault();
                                     event.stopPropagation();
+                                }else{
+                                    $('#image').val($('#file-image').prop('files')[0].name);
                                 }
     
                                 form.classList.add('was-validated');

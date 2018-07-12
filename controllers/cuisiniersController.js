@@ -5,50 +5,55 @@ var User = require("../models/User");
 var jwt = require('jsonwebtoken');
 
 //var SECRET = process.env.SECRETKEY;//var avec la base mongo 'simplon_reunion_4p_dw-AB_IH_JFG'
-var  SECRET = 'simplon_reunion_4p_dw-AB_IH_JFG'; // /!\ COMMENTER LORS DE LA MISE EN PROD, UNIQUEMENT POUR LES TESTS'
+var SECRET = 'simplon_reunion_4p_dw-AB_IH_JFG'; // /!\ COMMENTER LORS DE LA MISE EN PROD, UNIQUEMENT POUR LES TESTS'
 
 module.exports = {
     //Liste les données
-    login: function (req, res) {        
+    login: function (req, res) {
         User.findOne({
             'email': req.body.logemail
-        }).exec(function (err, data) {           
-                if (err) {
-                    console.log('Error : ', err);
-                } else {
-                    bcrypt.compare(req.body.logpassword, data.password, function (err, result) {
-                        if (result === true) {
-                        // console.log("data ok = > ",data);
-                            var donnees = { email: data.email, role: data.role }
-                            // then return a token, secret key should be an env variable
-                            const token = jwt.sign(donnees, SECRET, { expiresIn: '24h' });                        
-                            req.session.token = token;
-                            req.session.user = { 
-                                _id: data._id,
-                                nom: data.nom,
-                                prenom: data.prenom,
-                                specialite: data.specialite,
-                                email: data.email,
-                                role: data.role
-                            };
-
-                            console.log("session.cuis ok = > ",req.session.user);
-                            // res.render("ateliers/admin/liste", {
-                            //     token: token
-                            // });
-                            res.redirect('/ateliers/admin/'+data._id);
-                        } else {
-                            res.redirect('/cuisiniers/auth');
+        }).exec(function (err, data) {
+            if (err || data == null) {
+                res.redirect('/cuisiniers/auth');
+            } else {
+                bcrypt.compare(req.body.logpassword, data.password, function (error, result) {
+                    if (error) {
+                        res.redirect("/particuliers/auth");
+                    } else if (result === true) {
+                        var donnees = {
+                            email: data.email,
+                            role: data.role
                         }
+                        // then return a token, secret key should be an env variable
+                        const token = jwt.sign(donnees, SECRET, {
+                            expiresIn: '24h'
+                        });
+                        req.session.token = token;
+                        req.session.user = {
+                            _id: data._id,
+                            nom: data.nom,
+                            prenom: data.prenom,
+                            specialite: data.specialite,
+                            email: data.email,
+                            role: data.role
+                        };
+
+                        //console.log("session.cuis ok = > ",req.session.user);
+                        // res.render("ateliers/admin/liste", {
+                        //     token: token
+                        // });
+                        res.redirect('/ateliers/admin/' + data._id);
+                    } else {
+                        res.redirect('/cuisiniers/auth');
+                    }
                 })
-              
-            }           
+            }
         });
     },
     //Liste les données
     logout: function (req, res) {
-        req.session.token   = " ";
-        req.session.user    = " ";
+        req.session.token = " ";
+        req.session.user = " ";
         res.redirect('/ateliers');
         // res.render("ateliers/index", {
         //     title: 'User 974',
@@ -86,6 +91,7 @@ module.exports = {
 
     //redirection à la page de creation
     auth: function (req, res) {
+
         res.render("cuisiniers/login");
     },
 
@@ -96,7 +102,7 @@ module.exports = {
         user.save(function (err) {
             if (err) {
                 console.log(err);
-                res.render("../views/cuisiniers/login");
+                res.render("cuisiniers/login");
             } else {
                 console.log("creation OK");
                 res.redirect("/ateliers");

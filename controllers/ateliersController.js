@@ -21,7 +21,8 @@ module.exports = {
                 role: " "
             };
         }
-        Atelier.find({actif:{ $eq: "on" }}).exec(function(err, datas){
+      //  Atelier.find({actif:{ $eq: "on" }, $sort : {date : -1}}).limit(3).exec(function(err, datas){
+        Atelier.find({actif:{ $eq: "on" }}).limit(3).exec(function(err, datas){
             if(err){
                 console.log('Error : ', err);
             }else{
@@ -96,7 +97,7 @@ module.exports = {
             if(err){
                 console.log('Error : ', err);
             }else{
-                console.log('my data :=================== ', data);
+               // console.log('my data :=================== ', data);
                 res.render("ateliers/admin/create",{
                     data:data,
                     user:req.session.user
@@ -115,12 +116,12 @@ module.exports = {
 
     //enregistrement des données
     save: function(req, res){
-            var atelier = new Atelier(req.body);
-
+        var atelier = new Atelier(req.body);
         atelier.save(function(err,data){
+            console.log("___",err);
             if(err){
                 console.log(err);
-                res.render("../views/ateliers/admin/create/");
+                res.redirect("/ateliers/admin/create");
             } else{
                 console.log("creation OK");
                 res.redirect('/ateliers/admin/'+data._id);
