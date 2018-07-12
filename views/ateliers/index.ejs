@@ -5,7 +5,9 @@
       <div class="container">
         <div class="row">
           <div class="col">
-            <a type="" role="button" href="/cuisiniers/auth" class="btn  mt-5">Je suis un cuisinier</a>
+            <a href="/cuisiniers/auth" class="btn btn-danger mt-3 text-uppercase">
+                <i class="fas fa-utensils mr-3"></i> Je suis cuisinier 
+            </a>
           </div>
         </div>
       </div>
@@ -41,7 +43,7 @@
                             <button type="submit" value="Register" class="btn btn-lg mb-3"> Réservation</button>  
                           <!-- <a class="btn btn-lg" href="/ateliers/reservation/<%=atelier._id %>" role="button">Réservation</a> -->
                           </form>
-                          <span>
+                          <span class="d-block m-3">
                             <% if(atelier.places_disponible<2){ %>
                            Place limité à : <%=atelier.places_disponible %> personnes
                            <br/> Places déja réservées : <%=atelier.places_reservees%>

@@ -115,7 +115,7 @@ module.exports = {
 
     //enregistrement des données
     save: function(req, res){
-        var atelier = new Atelier(req.body);
+            var atelier = new Atelier(req.body);
 
         atelier.save(function(err,data){
             if(err){
