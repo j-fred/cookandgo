@@ -21,7 +21,8 @@ module.exports = {
                 role: " "
             };
         }
-        Atelier.find({actif:{ $eq: "on" }}).exec(function(err, datas){
+      //  Atelier.find({actif:{ $eq: "on" }, $sort : {date : -1}}).limit(3).exec(function(err, datas){
+        Atelier.find({actif:{ $eq: "on" }}).limit(3).exec(function(err, datas){
             if(err){
                 console.log('Error : ', err);
             }else{

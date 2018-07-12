@@ -1,52 +1,41 @@
-
- 
-      <% include partials/head.ejs %>
-   
-  
+<% include partials/head.ejs %>
   <body class="bg-orange">
-        <% include ./partials/header.ejs %>
-    <div class="container-fluid px-0">
-  
-    <div class="container bg-light border-top-red mb-5 p-md-5 pb-5 mt-3 pt-3">
-    <div id="carouselExampleSlidesOnly" class="carousel slide " data-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img class="d-block w-100" src="/img/food1.jpg" alt="First slide">
+    <% include ./partials/header.ejs %>
+      <div class="container-fluid px-0">
+        <div class="container bg-light border-top-red mb-5 p-md-5 pb-5 mt-3 pt-3">
+          <div id="carouselExampleSlidesOnly" class="carousel slide " data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item carousel_h active">
+                <img class="d-block w-100" src="/img/<%=datas[0].image %>" alt="<%=datas[0].titre%>">
               </div>
-              <div class="carousel-item">
-                <img class="d-block w-100" src="/img/food2.jpg" alt="Second slide">
+              <div class="carousel-item carousel_h">
+                <img class="d-block w-100" src="/img/<%=datas[1].image %>" alt="<%=datas[1].titre%>">
               </div>
-              <div class="carousel-item">
-                <img class="d-block w-100" src="/img/food3.jpg" alt="Third slide">
+              <div class="carousel-item carousel_h">
+                <img class="d-block w-100" src="/img/<%=datas[2].image %>" alt="<%=datas[2].titre%>">
               </div>
             </div>
           </div>
           <div class="text-center">
-                <h1 >Bienvenue !</h1>
-                <p class="lead py-2">Nos Ateliers Cuisines</p>
-      <p class="px-3 py-3"> Plus qu’un cours de cuisine, c’est dans un espace convivial, chaleureux et tout équipé qui vous attend.
-
-            Vous serez guidés avec pédagogie et générosité par des professionnels, heureux de vous faire partager leur métier, leur passion et leur savoir faire afin de vous faire découvrir les trucs et astuces pour cuisiner comme un vrai chef, et surtout avoir la satisfaction de l’avoir fait « soi-même ». </p>
-                <a  role="button" href="/ateliers" class="btn btn mt-3 ">
-                  <i class="fas fa-utensils mr-3"></i>  Decouvrir nos ateliers  </a>
-                  <hr>
-              </div>
-
-
+            <h1>Bienvenue !</h1>
+            <p class="lead py-2">Nos Ateliers Cuisines</p>
+            <p class="px-3 py-3"> Plus qu’un cours de cuisine, c’est dans un espace convivial, chaleureux et tout équipé qui vous attend. Vous
+              serez guidés avec pédagogie et générosité par des professionnels, heureux de vous faire partager leur métier,
+              leur passion et leur savoir faire afin de vous faire découvrir les trucs et astuces pour cuisiner comme un
+              vrai chef, et surtout avoir la satisfaction de l’avoir fait « soi-même ». </p>
+            <a role="button" href="/ateliers" class="btn btn mt-3 ">
+              <i class="fas fa-utensils mr-3"></i> Decouvrir nos ateliers </a>
+            <hr>
+          </div>
           <!-- NE PAS AJOUTER DE type="button" sur un a quand il y a bootstrap de charger -->
           <!-- Il génère une difference entre chrome et firefox -->
-          <div class=" alert alert-success">
-          <p class="lead mt-5 p-4"> Vous voulez proposez votre propre atelier et vous êtes cuisinier. Cliquez sur le bouton ci-dessous 
-          <a href="/cuisiniers/auth" class="btn btn-outline-danger mt-3">
-            <i class="fas fa-utensils mr-3"></i> Créer mon atelier</a> </p></div>
-
-         
-
+          <div class="alert alert-success text-center">
+            <p class="lead mt-5 p-4"> Vous voulez proposez votre propre atelier et vous êtes cuisinier. Cliquez sur le bouton ci-dessous
+              <a href="/cuisiniers/auth" class="btn btn-outline-danger mt-3">
+                <i class="fas fa-utensils mr-3"></i> Créer mon atelier</a>
+            </p>
           </div>
-       
         </div>
-
       </div>
-
+      </div>
       <% include ./partials/footer.ejs %>
-  

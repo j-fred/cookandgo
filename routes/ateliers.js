@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+var path = require('path');
 var data = require("../controllers/ateliersController");
 var jwtU = require("../utils/jwt.utils");
 
@@ -24,7 +24,28 @@ var storage = multer.diskStorage({
       cb(null, file.originalname)
     }
   });
-var upload = multer({ storage: storage });
+  var upload = multer({
+    storage: storage,
+    limits:{fileSize: 10000000},
+    fileFilter: function(req, file, cb){
+      checkFileType(file, cb);
+    }
+  });
+  // Check File Type
+  function checkFileType(file, cb){
+    // Allowed ext
+    var filetypes = /jpeg|jpg|png|gif/;
+    // Check ext
+    var extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+    // Check mime
+    var mimetype = filetypes.test(file.mimetype);
+  
+    if(mimetype && extname){
+      return cb(null,true);
+    } else {
+      cb('Error: Images Only!');
+    }
+  }
 //----------------------------------------------------------------------------
 
 //recuperer les datas

@@ -17,20 +17,20 @@
             <% datas.forEach(function(atelier){ %>
               <div class="col-sm-12 col-md-6">   
                     
-                  <div class="jumbotron h-jumbotron mt-5 text-center h-80">
-                     
-                    <div class="row mb-3"> <div class="col font-weight-bold"> Disponible le : <%=atelier.date %></div>
-                    <div class="col">à <%=atelier.horaire %>
-                  
+                  <div class="jumbotron h-jumbotron mt-5 text-center h-80">                     
+                    <div class="row mb-3"> 
+                      <div class="col-9 text-left font-weight-bold"> Disponible le : <span class="myDate"><%=atelier.date %></span>
+                      </div>
+                    <div class="col-3 text-right">à <%=atelier.horaire %>                  
                   </div>
                   </div>
                   <p class="lead"> Atelier proposé par <span><%=atelier._cuisinier.nom %> <%=atelier._cuisinier.prenom %>   </span></p>
                     <h3 class="text-uppercase"> <%=atelier.titre %></h3>
                     <div class="atelier-img">
-                        <img class="mb-3 img-fluid" src="/img/<%=atelier.image %>" width="460">  
+                      <img class="mb-3 img-fluid smooth" src="/img/<%=atelier.image %>">  
                     </div>
                     <div class="h-block">
-                    <p class="lead pt-5"> Durée : <%=atelier.duree%> heures </p>  
+                    <p class="lead pt-5"> Durée : <span class="maDuree"><%=atelier.duree%></span></p>  
                     <p >
                       <%=atelier.description %>
                     </p>

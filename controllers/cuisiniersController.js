@@ -86,6 +86,7 @@ module.exports = {
 
     //redirection à la page de creation
     auth: function (req, res) {
+        
         res.render("cuisiniers/login");
     },
 
