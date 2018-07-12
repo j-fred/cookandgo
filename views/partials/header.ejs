@@ -14,6 +14,11 @@
                     <a href="/ateliers/admin/<%= user._id %>" class="p-1 btn-success" >Mon compte</a><br>              
                     <a href="/cuisiniers/logout" class="p-1 btn-danger" >Se déconnecter</a>  
                 </div> 
+            <% } else if(user.role == 1) { %>
+                    <div class="card bg-dark text-white text-center p-3" style="width: 18rem;">
+                    <h5><%= user.prenom %> <%= user.nom %> </h5>            
+                    <a href="/particuliers/logout" class="p-1 btn-danger" >Se déconnecter</a>
+                    </div> 
             <% } %>
         </div>
     </nav>
@@ -32,7 +37,12 @@
                     <h5><small>Chef <%= user.nom %> </small></h5>
                     <a href="/ateliers/admin/<%= user._id %>" class="p-1 btn-success" >Mon compte</a>                
                     <a href="/cuisiniers/logout" class="p-1 btn-danger" >Se déconnecter</a>     
-                </div> 
+                </div>  
+            <% } else if(user.role == 1) { %>
+                    <div class="card bg-dark text-white text-center p-3" style="width: 18rem;">
+                    <h5><%= user.prenom %> <%= user.nom %> </h5>            
+                    <a href="/particuliers/logout" class="p-1 btn-danger" >Se déconnecter</a>
+                    </div> 
             <% } %>
         </div>
     </nav>
