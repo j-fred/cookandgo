@@ -29,7 +29,7 @@ function convertMinsToHrsMins(mins) {
 }
 
 $(function () {
-    $('.h_var').parents('.h-jumbotron').css('height', '965px');
+    $('.h_var').parents('.h-jumbotron').css('height', '990px');
     var dateTransform = "";
     /** Sur chaque element avec la class myDate, je recupère son contenu 
      * et je le traite avec la fonction formatDate
@@ -42,7 +42,7 @@ $(function () {
         // console.log(dateTransform);   
     });
     /**
-     * 
+     * fonction qui transforme les mins en heure si > 59 min
      */
     $(".maDuree").each(function (e) {
         // console.log($(this).text());      
