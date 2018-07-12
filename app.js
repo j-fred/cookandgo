@@ -53,8 +53,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 var indexRouter = require('./routes/index');
 app.use('/', indexRouter);
 
-var usersRouter = require('./routes/users');
-app.use('/users', usersRouter);
+// var usersRouter = require('./routes/users');
+// app.use('/users', usersRouter);
 
 var particuliersRouter = require('./routes/particuliers');
 app.use('/particuliers', particuliersRouter);

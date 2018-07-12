@@ -3,8 +3,6 @@ var jwt = require('jsonwebtoken');
 var SECRET = process.env.SECRETKEY; //var avec la base mongo 'simplon_reunion_4p_dw-AB_IH_JFG'
 SECRET = 'simplon_reunion_4p_dw-AB_IH_JFG'; // /!\ COMMENTER LORS DE LA MISE EN PROD, UNIQUEMENT POUR LES TESTS'
 
-
-
 //export du module de la fonction ensure
 module.exports = {
     ensureToken: function (req, res, next) {

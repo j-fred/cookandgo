@@ -76,29 +76,17 @@
                                 <div class="panel-body">
                                     <form role="form" action="/particuliers/save" method="POST" class="needs-validation" novalidate>
                                         <div class="form-group">
-
-                                            <div class="form-group">
                                                 <input type="text" name="nom" id="nom" class="form-control input-sm" placeholder="Nom *" required>
                                                 <div class="invalid-feedback text-left">
                                                     Entrez votre nom
                                                 </div>
-                                            </div>
-
                                         </div>
                                         <div class="form-group">
-
-                                            <div class="form-group">
                                                 <input type="text" name="prenom" id="prenom" class="form-control input-sm" placeholder="Prénom *" required>
                                                 <div class="invalid-feedback text-left">
                                                     Entrez votre prénom
                                                 </div>
-                                            </div>
-
                                         </div>
-
-
-
-
                                         <div class="form-group">
                                             <input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address *" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
                                             <div class="invalid-feedback text-left">
@@ -106,7 +94,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" name="phone" id="phone" class="form-control input-sm" placeholder="Télephone">
+                                            <input type="text" name="phone" id="phone" class="form-control input-sm" placeholder="Télephone" >
                                             <div class="invalid-feedback text-left">
                                                 Entrez votre numéro de téléphone
                                             </div>
@@ -123,8 +111,7 @@
                                             </div>
                                             <div class="col-xs-6 col-sm-6 col-md-6">
                                                 <div class="form-group">
-                                                    <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirmer le mot de passe"
-                                                        required>
+                                                    <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirmer le mot de passe" required>
                                                     <div class="invalid-feedback text-left">
                                                         Entrez votre mot de passe
                                                     </div>
@@ -132,7 +119,6 @@
                                             </div>
                                             <div class="form-group">
                                                     <input type="hidden" name="role" id="role" class="form-control input-sm" value="1">
-                                                
                                                 </div>
                                         </div>
                                         <button type="submit" value="Register" class="btn btn-danger btn-block mb-1"> REGISTER</button>

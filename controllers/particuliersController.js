@@ -3,27 +3,32 @@ var bcrypt = require('bcrypt');
 var User = require("../models/User");
 
 var jwt = require('jsonwebtoken');
-var SECRET = process.env.SECRETKEY;//var avec la base mongo 'simplon_reunion_4p_dw-AB_IH_JFG'
-    SECRET = 'simplon_reunion_4p_dw-AB_IH_JFG'; // /!\ COMMENTER LORS DE LA MISE EN PROD, UNIQUEMENT POUR LES TESTS'
+var SECRET = process.env.SECRETKEY; //var avec la base mongo 'simplon_reunion_4p_dw-AB_IH_JFG'
+SECRET = 'simplon_reunion_4p_dw-AB_IH_JFG'; // /!\ COMMENTER LORS DE LA MISE EN PROD, UNIQUEMENT POUR LES TESTS'
 
 module.exports = {
     //Liste les données
-    login: function (req, res) {        
+    login: function (req, res) {
         User.findOne({
             'email': req.body.logemail
         }).exec(function (err, data) {
-         
-                    if (err) {
-                        console.log('Error : ', err);
-                    } else {
-                        bcrypt.compare(req.body.logpassword, data.password, function (err, result) {
-                            if (result === true) {
-                        //console.log("data part  = > ",data);
-                        var donnees = { email: data.email, role: data.role }
+            if (err || data == null ) {
+                res.redirect("/particuliers/auth");
+            } else {
+                bcrypt.compare(req.body.logpassword, data.password, function (error, result) {
+                    if (error) {
+                        res.redirect("/particuliers/auth");
+                    } else if (result === true) {
+                        var donnees = {
+                            email: data.email,
+                            role: data.role
+                        }
                         // then return a token, secret key should be an env variable
-                        const token = jwt.sign(donnees, SECRET, { expiresIn: '12h' });                        
+                        const token = jwt.sign(donnees, SECRET, {
+                            expiresIn: '12h'
+                        });
                         req.session.token = token;
-                        req.session.user = { 
+                        req.session.user = {
                             _id: data._id,
                             nom: data.nom,
                             prenom: data.prenom,
@@ -32,22 +37,22 @@ module.exports = {
                             role: data.role
                         };
 
-                        console.log("session.part ok = > ",req.session.user);
+                        //console.log("session.part ok = > ",req.session.user);
                         // res.render("ateliers/admin/liste", {
                         //     token: token
                         // });
                         res.redirect('/ateliers');
-                } else {
-                  res.redirect('/cuisiniers/auth');
-                }
-            })  
-        }         
+                    } else {
+                        res.redirect("/particuliers/auth");
+                    }
+                })
+            }
         });
     },
     //Liste les données
     logout: function (req, res) {
-        req.session.token   = " ";
-        req.session.user    = " ";
+        req.session.token = " ";
+        req.session.user = " ";
         res.redirect('/ateliers');
         // res.render("ateliers/index", {
         //     title: 'User 974',

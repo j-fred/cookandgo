@@ -116,12 +116,12 @@ module.exports = {
 
     //enregistrement des données
     save: function(req, res){
-            var atelier = new Atelier(req.body);
-
+        var atelier = new Atelier(req.body);
         atelier.save(function(err,data){
+            console.log("___",err);
             if(err){
                 console.log(err);
-                res.render("../views/ateliers/admin/create/");
+                res.redirect("/ateliers/admin/create");
             } else{
                 console.log("creation OK");
                 res.redirect('/ateliers/admin/'+data._id);

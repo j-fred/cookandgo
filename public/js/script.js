@@ -31,15 +31,19 @@ function convertMinsToHrsMins(mins) {
 $(function () {
     $('.h_var').parents('.h-jumbotron').css('height', '965px');
     var dateTransform = "";
-    // Sur chaque element avec la class myDate, je recupère son contenu 
-    // et je le traite avec la fonction formatDate
-    // puis je remplace l'ancienne valeur par la nouvelle 
+    /** Sur chaque element avec la class myDate, je recupère son contenu 
+     * et je le traite avec la fonction formatDate
+     * puis je remplace l'ancienne valeur par la nouvelle 
+    */
     $(".myDate").each(function (e) {
         // console.log($(this).text());      
         dateTransform = formatDate($(this).text());
         $(this).text(dateTransform);
         // console.log(dateTransform);   
     });
+    /**
+     * 
+     */
     $(".maDuree").each(function (e) {
         // console.log($(this).text());      
         timeTransform = convertMinsToHrsMins($(this).text());
