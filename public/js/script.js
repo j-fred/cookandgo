@@ -29,6 +29,7 @@ function convertMinsToHrsMins(mins) {
 }
 
 $(function () {
+    $('.h_var').parents('.h-jumbotron').css('height', '965px');
     var dateTransform = "";
     // Sur chaque element avec la class myDate, je recupère son contenu 
     // et je le traite avec la fonction formatDate

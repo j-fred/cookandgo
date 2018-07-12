@@ -24,20 +24,23 @@ module.exports = {
             // Next middleware
             next();
         } else {
-            res.status(403).send("accès refusé");
+            //res.status(403).send("accès refusé");
+            res.redirect('/ateliers');
         }
     },
     isAdmin: function (req, res, next) {
         jwt.verify(req.session.token, SECRET, function (err, data) {
             if (err) {
-                res.status(403).send("Accès refusé");
+               // res.status(403).send("Accès refusé");
+                res.redirect('/cuisiniers/auth');
             } else {
                 if (data.role === 2) {
                    // console.log("droit ok");
                     req.body.role = data.role;
                     next();
                 } else {
-                    res.status(403).send("Vous n'avez pas les droits necessaire pour allez ici");
+                    //res.status(403).send("Vous n'avez pas les droits necessaire pour allez ici");
+                    res.redirect('/ateliers');
                 }
             }
         });
@@ -54,7 +57,8 @@ module.exports = {
                     next();
                 } else {
                     console.log("role =",req.session.user.role);
-                    res.status(403).send("Vous n'avez pas les droits necessaire pour allez ici");
+                  //  res.status(403).send("Vous n'avez pas les droits necessaire pour allez ici");
+                    res.redirect("/particuliers/auth");
                 }
             }
         });

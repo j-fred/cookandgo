@@ -97,7 +97,7 @@ module.exports = {
             if(err){
                 console.log('Error : ', err);
             }else{
-                console.log('my data :=================== ', data);
+               // console.log('my data :=================== ', data);
                 res.render("ateliers/admin/create",{
                     data:data,
                     user:req.session.user
