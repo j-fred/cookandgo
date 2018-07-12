@@ -29,7 +29,7 @@
                     <div class="atelier-img">
                       <img class="mb-3 img-fluid smooth" src="/img/<%=atelier.image %>" alt="<%=atelier.titre %>">  
                     </div>
-                    <div class="h-block">
+                    <div class="">
                     <p class="lead pt-5"> Durée : <span class="maDuree"><%=atelier.duree%></span></p>  
                     <p >
                       <%=atelier.description %>
@@ -43,7 +43,7 @@
                             <button type="submit" value="Register" class="btn btn-lg mb-3"> Réservation</button>  
                           <!-- <a class="btn btn-lg" href="/ateliers/reservation/<%=atelier._id %>" role="button">Réservation</a> -->
                           </form>
-                          <span class="d-block m-3 h_var">
+                          <span class="d-block">
                             <% if(atelier.places_disponible<2){ %>
                            Place limité à : <%=atelier.places_disponible %> personnes
                            <br/> Places déja réservées : <%=atelier.places_reservees%>
