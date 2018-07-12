@@ -15,7 +15,7 @@
             <% datas.forEach(function(atelier){ %>
               <div class="col-sm-12 col-md-6">   
                     
-                  <div class="jumbotron mt-5 text-center">
+                  <div class="jumbotron h-jumbotron mt-5 text-center h-80">
                      
                     <div class="row mb-3"> <div class="col font-weight-bold"> Disponible le : <%=atelier.date %></div>
                     <div class="col">à <%=atelier.horaire %>
@@ -23,30 +23,35 @@
                   </div>
                   </div>
                   <p class="lead"> Atelier proposé par <span><%=atelier._cuisinier.nom %> <%=atelier._cuisinier.prenom %>   </span></p>
-                    <h3 class="text-uppercase"> <%=atelier.titre %></h3></small>
-                    <img class="mb-3 img-fluid" src="/img/<%=atelier.image %>" width="460">  
-                    <p class="lead"> Durée : <%=atelier.duree%> heures </p>  
+                    <h3 class="text-uppercase"> <%=atelier.titre %></h3>
+                    <div class="atelier-img">
+                        <img class="mb-3 img-fluid" src="/img/<%=atelier.image %>" width="460">  
+                    </div>
+                    <div class="h-block">
+                    <p class="lead pt-5"> Durée : <%=atelier.duree%> heures </p>  
                     <p >
                       <%=atelier.description %>
                     </p>
-               
+                  </div>
                     <hr class="my-4">     
                     <span class="badge badge-success p-3 text-uppercase mb-2"> Prix : <%=atelier.prix %> € </span>
                     <% if(user.role!=2){   %> 
                         <% if(atelier.places_disponible > atelier.places_reservees){   %> 
                           <form role="form" action="/ateliers/reservation/<%=atelier._id %>" method="POST" class="needs-validation" >   
-                            <button type="submit" value="Register" class="btn btn-lg"> Réservation</button>  
+                            <button type="submit" value="Register" class="btn btn-lg mb-3"> Réservation</button>  
                           <!-- <a class="btn btn-lg" href="/ateliers/reservation/<%=atelier._id %>" role="button">Réservation</a> -->
                           </form>
                           <span>
                             <% if(atelier.places_disponible<2){ %>
-                            <%=atelier.places_disponible %> place disponible
+                           Place limité à : <%=atelier.places_disponible %> personnes
+                           <br/> Places déja réservées : <%=atelier.places_reservees%>
                             <% }else{ %>
-                            <%=atelier.places_disponible %> places disponible
+                              Place limité à :  <%=atelier.places_disponible %> personnes
+                              <br/> Places déja réservées : <%=atelier.places_reservees%>
                             <% } %>
                           </span>
                         <% } else { %>
-                          <div class="alert alert-secondary" role="alert">COMPLET</div>
+                          <div class="alert alert-secondary" role="alert">COMPLET <br/> Une prochaine session sera bientôt disponible</div>
                         <% } %>
                       <% } %>
                   </div>
