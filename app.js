@@ -11,11 +11,11 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var app = express();
 
-// var urlDB = process.env.MONGODBFORMATION;//var avec la base mongo
-var    urlDB = process.env.DBCOOK;//var avec la base mongo
+var urlDB = process.env.MONGODBFORMATION;//var avec la base mongo
+// var    urlDB = process.env.DBCOOK;//var avec la base mongo
 
 var SECRET = process.env.SECRETKEY;//var avec la base mongo 'simplon_reunion_4p_dw-AB_IH_JFG'
-    SECRET = 'simplon_reunion_4p_dw-AB_IH_JFG'; // /!\ COMMENTER LORS DE LA MISE EN PROD, UNIQUEMENT POUR LES TESTS'rs
+//    SECRET = 'simplon_reunion_4p_dw-AB_IH_JFG';  /!\ COMMENTER LORS DE LA MISE EN PROD, UNIQUEMENT POUR LES TESTS'rs
 
 //connection à la base de données
 var mongoose = require('mongoose');
